@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DietCreationActivity">
+
+    <TextView
+        android:id="@+id/tvDietName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Navn på diæt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etDietName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/tvDietName"
+        app:layout_constraintTop_toBottomOf="@+id/tvDietName" />
+
+    <TextView
+        android:id="@+id/tvCurrentWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Nuværende vægt"
+        app:layout_constraintStart_toStartOf="@+id/etDietName"
+        app:layout_constraintTop_toBottomOf="@+id/etDietName" />
+
+    <EditText
+        android:id="@+id/etCurrentWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:maxLength="5"
+        app:layout_constraintStart_toStartOf="@+id/tvCurrentWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentWeight" />
+
+    <TextView
+        android:id="@+id/tvDesiredWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ønskede vægt"
+        app:layout_constraintStart_toStartOf="@+id/etCurrentWeight"
+        app:layout_constraintTop_toBottomOf="@+id/etCurrentWeight" />
+
+    <EditText
+        android:id="@+id/etDesiredWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:maxLength="5"
+        app:layout_constraintStart_toStartOf="@+id/tvDesiredWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesiredWeight" />
+
+    <TextView
+        android:id="@+id/tvDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Antal dage"
+        app:layout_constraintStart_toStartOf="@+id/etDesiredWeight"
+        app:layout_constraintTop_toBottomOf="@+id/etDesiredWeight" />
+
+    <EditText
+        android:id="@+id/etDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:maxLength="3"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/tvDays"
+        app:layout_constraintTop_toBottomOf="@+id/tvDays" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="Opret Diæt"
+        app:layout_constraintEnd_toEndOf="@+id/etDays"
+        app:layout_constraintStart_toStartOf="@+id/etDays"
+        app:layout_constraintTop_toBottomOf="@+id/etDays" />
+
+    <TextView
+        android:id="@+id/tvHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Højde"
+        app:layout_constraintStart_toStartOf="@+id/etDays"
+        app:layout_constraintTop_toBottomOf="@+id/etDays" />
+
+    <EditText
+        android:id="@+id/etHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:maxLength="5"
+        app:layout_constraintStart_toStartOf="@+id/tvHeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
+
+</android.support.constraint.ConstraintLayout>
