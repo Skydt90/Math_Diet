@@ -70,12 +70,12 @@ public class DietService
      */
     public double calculateDailyWeightLoss(Diet diet)
     {
-        return (diet.getStartWeight() - diet.getDesiredWeight()) / diet.getNumberOfDays();
+        return (diet.getStartWeight() - diet.getDesiredWeight()) / diet.getNumberOfDays() * 1000;
     }
 
     public double calculateDailyWeightLoss(double startWeight, double desiredWeight, int daysInDiet)
     {
-        return  (startWeight - desiredWeight) / daysInDiet;
+        return (startWeight - desiredWeight) / daysInDiet * 1000;
     }
 
     public List<Date> createDietDates(Diet diet)

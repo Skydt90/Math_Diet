@@ -111,8 +111,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         diet = dietService.loadDietByID(dietID, this);
 
         tvCurrentDiet.setText(diet.getDietName());
-        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.3f", dietService.calculateDailyWeightLoss(diet)));
-        tvDailyWeightLoss.append(" kg");
+        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.0f", dietService.calculateDailyWeightLoss(diet)));
+        tvDailyWeightLoss.append(" g");
 
         if (day.getDayID() != null)
         {
@@ -141,6 +141,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void resetColorAndBtnText()
     {
+        tvDate.setClickable(true);
         tvMorningWeight.setTextColor(Color.GRAY);
         tvAllowedFood.setTextColor(Color.GRAY);
         tvBMI.setTextColor(Color.GRAY);
@@ -151,6 +152,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void hideBtnAndAdjustText()
     {
+        tvDate.setClickable(false);
         tvMorningWeight.setTextColor(Color.RED);
         tvMorningWeight.setText(R.string.morgenvægt_fejl);
         tvAllowedFood.setTextColor(Color.RED);

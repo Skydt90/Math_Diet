@@ -1,6 +1,7 @@
 package com.skydt.matematiskvgttab.activities;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -83,43 +85,89 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
             double dailyWeightLoss = dietService.calculateDailyWeightLoss(Double.parseDouble(etCurrentWeight.getText().toString()),
                                                                           Double.parseDouble(etDesiredWeight.getText().toString()),
                                                                           Integer.parseInt(etDays.getText().toString()));
-            if (dailyWeightLoss > 0.150)
-            {
-                showAlertDialog(dailyWeightLoss);
-            }
-            else
-            {
-                startDietCreation();
-            }
+            showAlertDialog(dailyWeightLoss);
         }
     }
 
     private void showAlertDialog(double dailyWeightLoss)
     {
         AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
-        String dwl = String.format(Locale.getDefault(), "%.2f", dailyWeightLoss);
+        String dwl = String.format(Locale.getDefault(), "%.0f", dailyWeightLoss);
+        AlertDialog alertDialog;
 
-        alertBox.setMessage("Baseret på dine indtastninger skal du tabe: " + dwl + " kg per dag.\nDette kan være urealistisk/usundt.\nØnsker du alligevel at fortsætte?").setCancelable(false)
-                .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
+        if (dailyWeightLoss >= 150 && dailyWeightLoss < 250)
+        {
+            alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
+                                "\n" + dwl + " gram per dag." +
+                                "\nDette kan være urealistisk/usundt." +
+                                "\nØnsker du alligevel at fortsætte?").setCancelable(false)
+                    .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
                     {
-                        startDietCreation();
-                    }
-                })
-                .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            startDietCreation();
+                        }
+                    })
+                    .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
                     {
-                        dialog.cancel();
-                        onResume();
-                    }
-                });
-        AlertDialog alertDialog = alertBox.create();
-        alertDialog.setTitle("OBS!");
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.cancel();
+                        }
+                    });
+            alertDialog = alertBox.create();
+            alertDialog.setTitle("Advarsel!");
+        }
+        else if (dailyWeightLoss >= 250)
+        {
+            alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
+                                "\n" + dwl + " gram per dag." +
+                                "\nDette er direkte urealistisk og usundt." +
+                                "\nJuster antallet af dage for at fortsætte.").setCancelable(false)
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.cancel();
+                        }
+                    });
+            alertDialog = alertBox.create();
+            alertDialog.setTitle("Glem det!");
+        }
+        else
+        {
+            alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
+                                "\n" + dwl + " gram per dag." +
+                                "\nVil du at oprette diæten?").setCancelable(false)
+                    .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            startDietCreation();
+                        }
+                    })
+                    .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.cancel();
+                        }
+                    });
+            alertDialog = alertBox.create();
+            alertDialog.setTitle("Resultat:");
+        }
         alertDialog.show();
+    }
+
+    public void hideKeyBoard(View view)
+    {
+        InputMethodManager inputMethodManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void startDietCreation()
