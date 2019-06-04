@@ -54,6 +54,6 @@ public class FoodWeighIn
     @Override
     public String toString()
     {
-        return String.format(Locale.getDefault(), "%.2f", foodWeighIn) + " kg - " + mealType;
+        return String.format(Locale.getDefault(), "%.0f", foodWeighIn * 1000) + " g  -  " + mealType;
     }
 }

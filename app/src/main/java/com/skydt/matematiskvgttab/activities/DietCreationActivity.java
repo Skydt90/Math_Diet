@@ -124,7 +124,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         {
             alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
                                 "\n" + dwl + " gram per dag." +
-                                "\nDette er direkte urealistisk og usundt." +
+                                "\nDette er urealistisk og usundt." +
                                 "\nJuster antallet af dage for at fortsætte.").setCancelable(false)
                     .setPositiveButton("ok", new DialogInterface.OnClickListener()
                     {

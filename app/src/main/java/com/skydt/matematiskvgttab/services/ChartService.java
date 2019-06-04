@@ -91,19 +91,19 @@ public class ChartService
 
         if (breakfast > 0.00f)
         {
-            entries.add(new PieEntry((float) breakfast * 1000 / 2, "Morgen"));
+            entries.add(new PieEntry((float) breakfast / 2 * 1000, "Morgen"));
         }
         if (lunch > 0.00f)
         {
-            entries.add(new PieEntry((float) lunch * 1000 / 2, "Middag"));
+            entries.add(new PieEntry((float) lunch / 2 * 1000, "Middag"));
         }
         if (dinner > 0.00f)
         {
-            entries.add(new PieEntry((float) dinner * 1000 / 2, "Aften"));
+            entries.add(new PieEntry((float) dinner / 2 * 1000, "Aften"));
         }
         if (snack > 0.00f)
         {
-            entries.add(new PieEntry((float) snack * 1000/ 2, "Snack"));
+            entries.add(new PieEntry((float) snack / 2 * 1000, "Snack"));
         }
 
         PieDataSet set = new PieDataSet(entries, "");

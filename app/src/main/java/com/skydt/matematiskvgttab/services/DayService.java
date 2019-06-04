@@ -112,7 +112,7 @@ public class DayService
 
     public double calculateAllowedFoodIntake(Day day)
     {
-        return day.getGoalWeight() - day.getMorningWeight();
+        return (day.getGoalWeight() - day.getMorningWeight()) * 1000;
     }
 
     public double calculateTotalFoodIntakeForDay(Day day)
@@ -124,18 +124,9 @@ public class DayService
             {
                 totalIntake += foodWeighIn.getFoodWeighIn();
             }
-            return totalIntake;
+            return totalIntake * 1000;
         }
-        return totalIntake;
-    }
-
-    public double[] getRecommendedFoodDistribution(double allowedFoodIntake)
-    {
-        double[] foodDistribution = new double[3];
-        foodDistribution[0] = (allowedFoodIntake / 100 * 25) * 1000;
-        foodDistribution[1] = (allowedFoodIntake / 100 * 30) * 1000;
-        foodDistribution[2] = (allowedFoodIntake / 100 * 45) * 1000;
-        return  foodDistribution;
+        return totalIntake * 1000;
     }
 
     private double calculateRemainingFoodIntakeBasedOnFoodWeighIn(Day day, double enteredWeight)
@@ -146,6 +137,20 @@ public class DayService
     private double calculateRemainingFoodIntakeBasedOnBodyWeighIn(Day day, double enteredWeight)
     {
         return day.getGoalWeight() - enteredWeight;
+    }
+
+    public double[] getRecommendedFoodDistribution(double allowedFoodIntake)
+    {
+        double[] foodDistribution = new double[3];
+        foodDistribution[0] = (allowedFoodIntake / 100 * 25);
+        foodDistribution[1] = (allowedFoodIntake / 100 * 30);
+        foodDistribution[2] = (allowedFoodIntake / 100 * 45);
+        return  foodDistribution;
+    }
+
+    public double convertRemainingFoodToGram(double allowedFoodIntake)
+    {
+        return allowedFoodIntake *= 1000;
     }
 
     public String getCurrentDateAsString()

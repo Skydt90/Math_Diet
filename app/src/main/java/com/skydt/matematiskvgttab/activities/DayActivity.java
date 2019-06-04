@@ -97,10 +97,10 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
             tvGoalWeight.append(" kg");
             tvMorningWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getMorningWeight()));
             tvMorningWeight.append(" kg");
-            tvAllowedFood.setText(String.format(Locale.getDefault(), "%.3f", dayService.calculateAllowedFoodIntake(day)));
-            tvAllowedFood.append(" kg");
-            tvTotalFoodEaten.setText(String.format(Locale.getDefault(), "%.3f", dayService.calculateTotalFoodIntakeForDay(day)));
-            tvTotalFoodEaten.append(" kg");
+            tvAllowedFood.setText(String.format(Locale.getDefault(), "%.0f", dayService.calculateAllowedFoodIntake(day)));
+            tvAllowedFood.append(" g");
+            tvTotalFoodEaten.setText(String.format(Locale.getDefault(), "%.0f", dayService.calculateTotalFoodIntakeForDay(day)));
+            tvTotalFoodEaten.append(" g");
             cbLikeDay.setChecked(day.getLike());
 
             List<FoodWeighIn> food = foodWeighInService.readAllFoodWeighInsFromDay(day, this);

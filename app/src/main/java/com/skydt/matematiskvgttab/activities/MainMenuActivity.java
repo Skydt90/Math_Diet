@@ -122,8 +122,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             tvGoalWeight.append(" kg");
             tvMorningWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getMorningWeight()));
             tvMorningWeight.append(" kg");
-            tvAllowedFood.setText(String.format(Locale.getDefault(), "%.3f", day.getAllowedFoodIntake()));
-            tvAllowedFood.append(" kg");
+            tvAllowedFood.setText(String.format(Locale.getDefault(), "%.0f", dayService.convertRemainingFoodToGram(day.getAllowedFoodIntake())));
+            tvAllowedFood.append(" g");
             tvBMI.setText(String.format(Locale.getDefault(), "%.1f", dietService.calculateBMI(bodyWeighInService.readLastBodyWeighInFromDay(day, this).getBodyWeight(), diet.getHeight())));
             setTextViewClickListener();
             setAllowedFoodColor();
@@ -143,6 +143,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     {
         tvDate.setClickable(true);
         tvDate.setAlpha(1);
+        tvCurrentDiet.setClickable(true);
+        tvCurrentDiet.setAlpha(1);
         tvMorningWeight.setTextColor(Color.GRAY);
         tvAllowedFood.setTextColor(Color.GRAY);
         tvBMI.setTextColor(Color.GRAY);
@@ -153,6 +155,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void hideBtnAndAdjustText()
     {
+        tvCurrentDiet.setClickable(false);
+        tvCurrentDiet.setAlpha(0.5f);
         tvDate.setClickable(false);
         tvDate.setAlpha(0.5f);
         tvMorningWeight.setTextColor(Color.RED);
