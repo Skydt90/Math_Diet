@@ -53,7 +53,7 @@ public class DayService
     private void updateAllowedFoodIntakeBasedOnMorningWeight(Day day, Context context)
     {
         Log.d(TAG, "updateAllowedFoodIntakeBasedOnWeighIn: Called");
-        dayRepo.updateAllowedFoodIntakeBasedOnWeighIn(day, calculateAllowedFoodIntake(day), context);
+        dayRepo.updateAllowedFoodIntakeBasedOnWeighIn(day, calculateFirstAllowedFoodIntake(day), context);
         Log.d(TAG, "updateAllowedFoodIntakeBasedOnWeighIn: Finished");
     }
 
@@ -94,7 +94,7 @@ public class DayService
         Log.d(TAG, "createDays: Called");
         for (Date date: dates)
         {
-            Day day = new Day(date, diet.getDietID(), diet.getStartWeight(), 0);
+            Day day = new Day(date, diet.getDietID(), diet.getStartWeight(), 0.0);
             diet.addDay(day);
         }
         calculateDailyGoalWeight(diet, dailyWeightLoss);
@@ -113,6 +113,12 @@ public class DayService
     public double calculateAllowedFoodIntake(Day day)
     {
         return (day.getGoalWeight() - day.getMorningWeight()) * 1000;
+    }
+
+    // first time a morning weight is entered each day
+    private double calculateFirstAllowedFoodIntake(Day day)
+    {
+        return day.getGoalWeight() - day.getMorningWeight();
     }
 
     public double calculateTotalFoodIntakeForDay(Day day)
