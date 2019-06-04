@@ -135,7 +135,10 @@ public class BodyWeighInRepo
         finally
         {
             database.close();
-            cursor.close();
+            if (cursor != null)
+            {
+                cursor.close();
+            }
             Log.d(TAG, "readLastBodyWeighInFromCompletedDaysInDiet: Finished");
         }
         return bodyWeighIns;

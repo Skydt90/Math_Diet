@@ -44,6 +44,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private Diet diet;
 
     private DayService dayService;
+    private DietService dietService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -103,19 +104,20 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void populateInterface()
     {
-        DietService dietService = new DietService();
+        dietService = new DietService();
         BodyWeighInService bodyWeighInService = new BodyWeighInService();
         dayService = new DayService();
         day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
         diet = dietService.loadDietByID(dietID, this);
 
+        tvCurrentDiet.setText(diet.getDietName());
+        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.3f", dietService.calculateDailyWeightLoss(diet)));
+        tvDailyWeightLoss.append(" kg");
+
         if (day.getDayID() != null)
         {
             resetColorAndBtnText();
-            tvCurrentDiet.setText(diet.getDietName());
             tvDate.setText(day.getSqlDate());
-            tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.3f", dietService.calculateDailyWeightLoss(diet)));
-            tvDailyWeightLoss.append(" kg");
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
             tvMorningWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getMorningWeight()));
@@ -128,10 +130,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         }
         else
         {
-            tvDate.setTextColor(Color.RED);
-            tvDate.setText(R.string.error);
+            dietComplete();
         }
-        if (day.getMorningWeight() == 0)
+        if (day.getMorningWeight() == 0 && day.getDayID() != null)
         {
             hideBtnAndAdjustText();
         }
@@ -140,8 +141,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void resetColorAndBtnText()
     {
-        tvBMI.setTextColor(Color.GRAY);
         tvMorningWeight.setTextColor(Color.GRAY);
+        tvAllowedFood.setTextColor(Color.GRAY);
+        tvBMI.setTextColor(Color.GRAY);
         btnBodyWeighIn.setText(R.string.krop);
         btnFood.setClickable(true);
         btnFood.setAlpha(1);
@@ -153,7 +155,29 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvMorningWeight.setText(R.string.morgenvægt_fejl);
         tvAllowedFood.setTextColor(Color.RED);
         tvAllowedFood.setText(R.string.morgenvægt_fejl);
+        tvBMI.setText(R.string.morgenvægt_fejl);
+        tvBMI.setTextColor(Color.RED);
         btnBodyWeighIn.setText(R.string.morgenvægt);
+        btnFood.setClickable(false);
+        btnFood.setAlpha(0.2f);
+    }
+
+    private void dietComplete()
+    {
+        tvDate.setTextColor((Color.parseColor("#53C557")));
+        tvDate.setText(R.string.done);
+        tvDate.setClickable(false);
+        tvDate.getPaint().setUnderlineText(false);
+        tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", diet.getDesiredWeight()));
+        tvGoalWeight.append(" kg");
+        tvMorningWeight.setTextColor((Color.parseColor("#53C557")));
+        tvMorningWeight.setText(R.string.done);
+        tvAllowedFood.setTextColor((Color.parseColor("#53C557")));
+        tvAllowedFood.setText(R.string.done);
+        tvBMI.setText(String.format(Locale.getDefault(), "%.1f", dietService.calculateBMI(diet.getDesiredWeight(), diet.getHeight())));
+
+        btnBodyWeighIn.setClickable(false);
+        btnBodyWeighIn.setAlpha(0.2f);
         btnFood.setClickable(false);
         btnFood.setAlpha(0.2f);
     }

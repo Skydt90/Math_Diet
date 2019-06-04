@@ -3,6 +3,7 @@
     <string name="morgenvægt">Morgenvægt</string>
     <string name="error">N/A</string>
     <string name="krop">Krop</string>
+    <string name="done">Diæt Afsluttet</string>
 
     <string name="app_name">Matematisk Vægttab</string>
     <string name="opret_diæt">Opret ny diæt</string>

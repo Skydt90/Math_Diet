@@ -45,7 +45,11 @@ public class ChartService
 
         for (int i = 0; i < bodyWeighIns.size(); i ++)
         {
-            entries.add(new Entry((float)i, (float)bodyWeighIns.get(i).getBodyWeight()));
+            if (i == 0)
+            {
+                entries.add(new Entry((float)1, (float)bodyWeighIns.get(i).getBodyWeight()));
+            }
+            else entries.add(new Entry((float)i, (float)bodyWeighIns.get(i).getBodyWeight()));
         }
 
         lineDataSet = new LineDataSet(entries, "Aktuelle vægt");
@@ -137,7 +141,7 @@ public class ChartService
         dataSet.setCircleColor(color);
         dataSet.setLineWidth(lineWidth);
         dataSet.setDrawValues(false);
-        dataSet.setDrawCircleHole(!drawCircles);
+        dataSet.setDrawCircleHole(drawCircles);
     }
 
     public void setLineChartStyle(LineChart lineChart)
