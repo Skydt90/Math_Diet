@@ -142,6 +142,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private void resetColorAndBtnText()
     {
         tvDate.setClickable(true);
+        tvDate.setAlpha(1);
         tvMorningWeight.setTextColor(Color.GRAY);
         tvAllowedFood.setTextColor(Color.GRAY);
         tvBMI.setTextColor(Color.GRAY);
@@ -153,6 +154,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private void hideBtnAndAdjustText()
     {
         tvDate.setClickable(false);
+        tvDate.setAlpha(0.5f);
         tvMorningWeight.setTextColor(Color.RED);
         tvMorningWeight.setText(R.string.morgenvægt_fejl);
         tvAllowedFood.setTextColor(Color.RED);
