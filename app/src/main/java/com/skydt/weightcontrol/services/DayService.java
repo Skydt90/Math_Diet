@@ -103,9 +103,12 @@ public class DayService
 
     private void calculateDailyGoalWeight(Diet diet, double dailyWeightLoss)
     {
+        double goalWeight = diet.getDays().get(0).getGoalWeight();
+        diet.getDays().get(0).setGoalWeight(goalWeight - dailyWeightLoss * 1);
+
         for (int i = 1; i <= diet.getDays().size()-1; i++)
         {
-            double goalWeight = diet.getDays().get(i).getGoalWeight();
+            goalWeight = diet.getDays().get(i).getGoalWeight();
             diet.getDays().get(i).setGoalWeight(goalWeight - dailyWeightLoss * i);
         }
     }

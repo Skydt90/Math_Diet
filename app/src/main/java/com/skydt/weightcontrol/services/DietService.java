@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.skydt.weightcontrol.models.Day;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.repositories.DietRepo;
 
@@ -70,12 +71,17 @@ public class DietService
      */
     public double calculateDailyWeightLoss(Diet diet)
     {
+        return (diet.getStartWeight() - diet.getDesiredWeight()) / diet.getNumberOfDays();
+    }
+
+    public double calculateDailyWeightLossInGram(Diet diet)
+    {
         return (diet.getStartWeight() - diet.getDesiredWeight()) / diet.getNumberOfDays() * 1000;
     }
 
     public double calculateDailyWeightLoss(double startWeight, double desiredWeight, int daysInDiet)
     {
-        return (startWeight - desiredWeight) / daysInDiet * 1000;
+        return (startWeight - desiredWeight) / daysInDiet;
     }
 
     public String calculateDietProgress(Diet diet)

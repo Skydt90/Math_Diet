@@ -110,7 +110,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         diet = dietService.loadDietByID(dietID, this);
 
         tvCurrentDiet.setText(diet.getDietName());
-        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.0f", dietService.calculateDailyWeightLoss(diet)));
+        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.0f", dietService.calculateDailyWeightLossInGram(diet)));
         tvDailyWeightLoss.append(" g");
 
         if (day.getDayID() != null)

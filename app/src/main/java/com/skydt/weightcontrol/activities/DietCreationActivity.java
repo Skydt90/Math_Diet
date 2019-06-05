@@ -92,7 +92,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
     private void showAlertDialog(double dailyWeightLoss)
     {
         AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
-        String dwl = String.format(Locale.getDefault(), "%.0f", dailyWeightLoss);
+        String dwl = String.format(Locale.getDefault(), "%.0f", dailyWeightLoss * 1000);
         AlertDialog alertDialog;
 
         if (dailyWeightLoss >= 150 && dailyWeightLoss < 250)
