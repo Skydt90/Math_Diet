@@ -1,11 +1,12 @@
 <resources>
     <string name="morgenvægt_fejl">Indtast morgenvægt</string>
     <string name="morgenvægt">Morgenvægt</string>
+    <string name="morgenvægt_mangler">Ingen morgenvægt</string>
     <string name="error">N/A</string>
     <string name="krop">Krop</string>
     <string name="done">Diæt Afsluttet</string>
 
-    <string name="app_name">Matematisk Vægttab</string>
+    <string name="app_name">Vægtkontrol</string>
     <string name="opret_diæt">Opret ny diæt</string>
     <string name="diæt_info">Diæt information</string>
     <string name="dag_info">Dags information</string>

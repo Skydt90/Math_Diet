@@ -25,10 +25,14 @@
         android:hint="Mængde i gram"
         android:inputType="numberSigned|numberDecimal"
         android:maxLength="4"
+        android:textCursorDrawable="@android:color/background_dark"
+        android:textSize="14sp"
+        app:backgroundTint="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
 
     <RadioGroup
         android:id="@+id/rbGroup"
@@ -43,34 +47,43 @@
         app:layout_constraintBottom_toTopOf="@+id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNewWeight">
+        app:layout_constraintTop_toBottomOf="@+id/etNewWeight"
+        app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
             android:id="@+id/rbBreakfast"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:checked="true"
-            android:text="Morgen" />
+            android:text="Morgen"
+            android:textSize="12sp"
+            app:buttonTint="@android:color/background_dark" />
 
         <RadioButton
             android:id="@+id/radioLunch"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="Middag" />
+            android:text="Middag"
+            android:textSize="12sp"
+            app:buttonTint="@android:color/background_dark" />
 
         <RadioButton
             android:id="@+id/rbDinner"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="Aften" />
+            android:text="Aften"
+            android:textSize="12sp"
+            app:buttonTint="@android:color/background_dark" />
 
         <RadioButton
             android:id="@+id/rbSnack"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Snack" />
+            android:layout_height="30dp"
+            android:text="Snack"
+            android:textSize="12sp"
+            app:buttonTint="@android:color/background_dark" />
 
     </RadioGroup>
 
@@ -90,15 +103,17 @@
 
     <Button
         android:id="@+id/btnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/ripple"
         android:text="Gem Indtastning"
         android:textAllCaps="false"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

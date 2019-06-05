@@ -18,7 +18,7 @@
         android:layout_marginBottom="8dp"
         android:text="Dato:"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:text="Målvægt:"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -44,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:text="Morgenvægt:"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -55,7 +55,7 @@
         android:layout_marginTop="8dp"
         android:text="Tilladt mad:"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -63,7 +63,9 @@
         android:id="@+id/piechart"
         android:layout_width="165dp"
         android:layout_height="165dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/textView13"
+        app:layout_constraintHorizontal_bias="0.382"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -76,7 +78,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -88,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="@+id/tvDate"
         tools:text="86,5 kg" />
@@ -98,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="@+id/tvGoalWeight"
         tools:text="85,6 kg" />
@@ -108,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="@+id/tvMorningWeight"
         tools:text="900 g" />
@@ -142,7 +144,7 @@
         android:gravity="left"
         android:text="Kropsvejninger"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/lvBody"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_bias="0.0"
@@ -159,7 +161,7 @@
         android:gravity="right"
         android:text="Madvejninger"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvBodyList"
         app:layout_constraintEnd_toEndOf="@+id/tvAllowedFood"
         app:layout_constraintHorizontal_bias="0.0"
@@ -186,30 +188,35 @@
         android:layout_marginTop="8dp"
         android:text="Like dagen?"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/tvvv"
         app:layout_constraintTop_toBottomOf="@+id/tvvv" />
 
     <CheckBox
         android:id="@+id/cbLikeDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
         android:onClick="onCheckboxClicked"
+        android:textColorHint="@android:color/background_dark"
+        android:textColorLink="#00474646"
+        android:textSize="12sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="@+id/tvAllowedFood" />
+        app:layout_constraintEnd_toEndOf="@+id/tvFoodEaten" />
 
     <Button
         android:id="@+id/btnPieChart"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ripple"
         android:text="@string/anbefalet_madfordeling"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/tvFoodList"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@+id/cbLikeDay"
-        app:layout_constraintStart_toEndOf="@+id/piechart" />
+        app:layout_constraintStart_toEndOf="@+id/piechart"
+        app:layout_constraintTop_toTopOf="@+id/piechart" />
 
     <TextView
         android:id="@+id/tvvv"
@@ -218,7 +225,7 @@
         android:layout_marginTop="8dp"
         android:text="Indtaget mad:"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -227,7 +234,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvvv"
         app:layout_constraintEnd_toEndOf="@+id/tvAllowedFood"
         tools:text="880 g" />
@@ -239,11 +246,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Madfordeling i gram:"
         android:textColor="@android:color/black"
-        android:textSize="17sp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvBodyList"
         app:layout_constraintEnd_toEndOf="@+id/cbLikeDay"
         app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.13" />
 
 </android.support.constraint.ConstraintLayout>
