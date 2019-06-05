@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -57,9 +59,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void loadInterface()
     {
-        Button btnNewDiet = findViewById(R.id.btnNewDiet);
+        Button btnNewDiet = findViewById(R.id.btnGoToDiet);
         btnNewDiet.setOnClickListener(this);
-        Button btnAllDiets = findViewById(R.id.btnAllDiets);
+        Button btnAllDiets = findViewById(R.id.btnGoToDay);
         btnAllDiets.setOnClickListener(this);
         btnBodyWeighIn = findViewById(R.id.btnBodyWeighIn);
         btnBodyWeighIn.setOnClickListener(this);
@@ -67,15 +69,12 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         btnFood.setOnClickListener(this);
 
         tvCurrentDiet = findViewById(R.id.tvCurrentDiet);
-        //tvCurrentDiet.getPaint().setUnderlineText(true);
         tvDate = findViewById(R.id.tvDate);
         tvDailyWeightLoss = findViewById(R.id.tvDailyWeightLoss);
-        //tvDate.getPaint().setUnderlineText(true);
         tvGoalWeight = findViewById(R.id.tvGoalWeight);
         tvMorningWeight = findViewById(R.id.tvMorningWeight);
         tvAllowedFood = findViewById(R.id.tvAllowedFood);
         tvBMI = findViewById(R.id.tvBMI);
-        setTextViewClickListener();
 
         lineChart = findViewById(R.id.linechart);
         lineChart.getDescription().setEnabled(false);
@@ -125,7 +124,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             tvAllowedFood.setText(String.format(Locale.getDefault(), "%.0f", dayService.convertRemainingFoodToGram(day.getAllowedFoodIntake())));
             tvAllowedFood.append(" g");
             tvBMI.setText(String.format(Locale.getDefault(), "%.1f", dietService.calculateBMI(bodyWeighInService.readLastBodyWeighInFromDay(day, this).getBodyWeight(), diet.getHeight())));
-            setTextViewClickListener();
             setAllowedFoodColor();
         }
         else
@@ -223,13 +221,16 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         switch (buttonID)
         {
-            case R.id.btnNewDiet:
-                intent = new Intent(this, DietCreationActivity.class);
+            case R.id.btnGoToDiet:
+                intent = new Intent(MainMenuActivity.this, DietActivity.class);
+                intent.putExtra("dietID", diet.getDietID());
                 startActivity(intent);
                 break;
 
-            case R.id.btnAllDiets:
-                intent = new Intent(this, DietSelectionActivity.class);
+            case R.id.btnGoToDay:
+                intent = new Intent(MainMenuActivity.this, DayActivity.class);
+                intent.putExtra("dietID", diet.getDietID());
+                intent.putExtra("dayID", day.getSqlDate());
                 startActivity(intent);
                 break;
 
@@ -252,35 +253,38 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void setTextViewClickListener()
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
     {
-        View.OnClickListener textOnClick = new View.OnClickListener()
+        getMenuInflater().inflate(R.menu.select_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+
+        switch (id)
         {
-            @Override
-            public void onClick(View v)
-            {
-                TextView tv = (TextView) v;
-                int id = tv.getId();
+            case R.id.mnuCreateDiet:
+                intent = new Intent(this, DietCreationActivity.class);
+                startActivity(intent);
+                break;
 
-                switch (id)
-                {
-                    case R.id.tvCurrentDiet:
-                        intent = new Intent(MainMenuActivity.this, DietActivity.class);
-                        intent.putExtra("dietID", diet.getDietID());
-                        startActivity(intent);
-                        break;
+            case R.id.mnuSwitchDiet:
+                intent = new Intent(this, DietSelectionActivity.class);
+                startActivity(intent);
+                break;
 
-                    case R.id.tvDate:
-                        intent = new Intent(MainMenuActivity.this, DayActivity.class);
-                        intent.putExtra("dietID", diet.getDietID());
-                        intent.putExtra("dayID", day.getSqlDate());
-                        startActivity(intent);
-                        break;
-                }
-            }
-        };
-        tvCurrentDiet.setOnClickListener(textOnClick);
-        tvDate.setOnClickListener(textOnClick);
+            case R.id.mnuAbout:
+
+                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 
     @Override

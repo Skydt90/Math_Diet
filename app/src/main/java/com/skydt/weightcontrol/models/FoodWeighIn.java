@@ -7,7 +7,6 @@ import java.util.Locale;
 
 public class FoodWeighIn
 {
-    private int foodWeighInID;
     private Date dayID;
     private int dietID;
     private double foodWeighIn;

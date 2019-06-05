@@ -48,9 +48,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:clickable="true"
+        android:clickable="false"
         android:text="TextView"
-        android:textColor="#0000EE"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,9 +72,8 @@
         android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
+        android:clickable="false"
         android:text="TextView"
-        android:textColor="#0000EE"
         android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="@+id/tvCurrentDiet"
@@ -182,7 +180,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="@+id/tvAllowedFood"
@@ -190,8 +187,8 @@
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/linechart"
-        android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_width="330dp"
+        android:layout_height="230dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -200,7 +197,7 @@
         app:layout_constraintEnd_toEndOf="@+id/tvAllowedFood"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/TvDietInfo"
@@ -212,7 +209,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Opret eller skift diæt"
+        android:text="Gå til"
         android:textColor="@android:color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -222,7 +219,7 @@
         app:layout_constraintVertical_bias="0.6" />
 
     <Button
-        android:id="@+id/btnNewDiet"
+        android:id="@+id/btnGoToDiet"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
@@ -231,7 +228,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/ripple"
-        android:text="Ny Diæt"
+        android:text="@string/diæt_info"
         android:textAllCaps="false"
         android:textSize="10sp"
         android:typeface="normal"
@@ -240,7 +237,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TvDietInfo" />
 
     <Button
-        android:id="@+id/btnAllDiets"
+        android:id="@+id/btnGoToDay"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_marginStart="8dp"
@@ -249,7 +246,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@drawable/ripple"
-        android:text="Diæter"
+        android:text="@string/dag_info"
         android:textAllCaps="false"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -268,7 +265,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/TvDietInfo"
         app:layout_constraintStart_toStartOf="@+id/TvDietInfo"
-        app:layout_constraintTop_toBottomOf="@+id/btnNewDiet"
+        app:layout_constraintTop_toBottomOf="@+id/btnGoToDiet"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button

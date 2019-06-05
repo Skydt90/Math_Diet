@@ -66,7 +66,8 @@ public class FoodWeighInRepo
             String query = "SELECT * FROM " + DBContract.FoodWeightEntries.TABLE_NAME
                                             + " WHERE " + DBContract.FoodWeightEntries.DAY_ID + " = " + "\"" + day.getSqlDate() + "\""
                                             + " AND "
-                                            + day.getDietID() + " = " + DBContract.BodyWeightEntries.DIET_ID;;
+                                            + DBContract.FoodWeightEntries.DIET_ID + " = " + day.getDietID()
+                                            + " ORDER BY " + DBContract.FoodWeightEntries.FOOD_ID + " DESC";
             cursor = database.rawQuery(query,null,null);
 
             if (cursor != null)

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mnuCreateDiet"
+        android:title="Opret ny diæt" />
+    <item
+        android:id="@+id/mnuSwitchDiet"
+        android:title="Skift diæt" />
+    <item
+        android:id="@+id/mnuAbout"
+        android:title="Information" />
+</menu>
