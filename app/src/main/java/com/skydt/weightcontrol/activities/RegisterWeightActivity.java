@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.models.BodyWeighIn;
@@ -110,13 +111,13 @@ public class RegisterWeightActivity extends AppCompatActivity implements View.On
                 break;
         }
         startActivity(intent);
+        Toast.makeText(RegisterWeightActivity.this, R.string.registreret, Toast.LENGTH_SHORT).show();
         finish();
     }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after)
     {
-
     }
 
     @Override

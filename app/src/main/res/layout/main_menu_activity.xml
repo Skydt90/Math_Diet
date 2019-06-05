@@ -187,12 +187,12 @@
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/linechart"
-        android:layout_width="330dp"
-        android:layout_height="230dp"
+        android:layout_width="340dp"
+        android:layout_height="200dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/TvDietInfo"
         app:layout_constraintEnd_toEndOf="@+id/tvAllowedFood"
         app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -216,7 +216,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <Button
         android:id="@+id/btnGoToDiet"
