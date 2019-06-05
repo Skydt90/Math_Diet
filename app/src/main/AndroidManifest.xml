@@ -31,6 +31,7 @@
         <activity
             android:name="com.skydt.weightcontrol.activities.DietCreationActivity"
             android:label="@string/opret_diæt"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.skydt.weightcontrol.activities.DayActivity"

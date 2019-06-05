@@ -124,7 +124,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         {
             alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
                                 "\n" + dwl + " gram per dag." +
-                                "\nDette er urealistisk og usundt." +
+                                "\nDette er både urealistisk og usundt." +
                                 "\nJuster antallet af dage for at fortsætte.").setCancelable(false)
                     .setPositiveButton("ok", new DialogInterface.OnClickListener()
                     {
@@ -135,13 +135,13 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
                         }
                     });
             alertDialog = alertBox.create();
-            alertDialog.setTitle("Glem det!");
+            alertDialog.setTitle("Desværre");
         }
         else
         {
             alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
                                 "\n" + dwl + " gram per dag." +
-                                "\nVil du at oprette diæten?").setCancelable(false)
+                                "\nØnsker du at oprette diæten?").setCancelable(false)
                     .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
                     {
                         @Override

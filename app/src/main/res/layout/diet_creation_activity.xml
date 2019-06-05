@@ -15,97 +15,145 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:text="Navn på diæt"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/etDietName"
+        app:layout_constraintStart_toEndOf="@+id/etDietName"
+        app:layout_constraintTop_toTopOf="@+id/etDietName" />
 
     <EditText
         android:id="@+id/etDietName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:textCursorDrawable="@android:color/background_dark"
         android:textSize="14sp"
         app:backgroundTint="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@+id/tvDietName"
-        app:layout_constraintTop_toBottomOf="@+id/tvDietName" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCurrentWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="Nuværende vægt"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/etDietName"
-        app:layout_constraintTop_toBottomOf="@+id/etDietName" />
+        app:layout_constraintBottom_toBottomOf="@+id/etCurrentWeight"
+        app:layout_constraintStart_toEndOf="@+id/etCurrentWeight"
+        app:layout_constraintTop_toTopOf="@+id/etCurrentWeight"
+        app:layout_constraintVertical_bias="0.583" />
 
     <EditText
         android:id="@+id/etCurrentWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberSigned|numberDecimal"
         android:maxLength="5"
         android:textCursorDrawable="@android:color/background_dark"
         android:textSize="14sp"
+        android:gravity="center"
         app:backgroundTint="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@+id/tvCurrentWeight"
-        app:layout_constraintTop_toBottomOf="@+id/tvCurrentWeight" />
+        app:layout_constraintStart_toStartOf="@+id/etDietName"
+        app:layout_constraintTop_toBottomOf="@+id/etDietName" />
 
     <TextView
         android:id="@+id/tvDesiredWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="Ønskede vægt"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/etCurrentWeight"
-        app:layout_constraintTop_toBottomOf="@+id/etCurrentWeight" />
+        app:layout_constraintBottom_toBottomOf="@+id/etDesiredWeight"
+        app:layout_constraintStart_toEndOf="@+id/etDesiredWeight"
+        app:layout_constraintTop_toTopOf="@+id/etDesiredWeight" />
 
     <EditText
         android:id="@+id/etDesiredWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberSigned|numberDecimal"
         android:maxLength="5"
         android:textCursorDrawable="@android:color/background_dark"
         android:textSize="14sp"
+        android:gravity="center"
         app:backgroundTint="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@+id/tvDesiredWeight"
-        app:layout_constraintTop_toBottomOf="@+id/tvDesiredWeight" />
+        app:layout_constraintStart_toStartOf="@+id/etCurrentWeight"
+        app:layout_constraintTop_toBottomOf="@+id/etCurrentWeight" />
 
     <TextView
         android:id="@+id/tvDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="Antal dage"
         android:textColor="@android:color/black"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/etDesiredWeight"
-        app:layout_constraintTop_toBottomOf="@+id/etDesiredWeight" />
+        app:layout_constraintBottom_toBottomOf="@+id/etDays"
+        app:layout_constraintStart_toEndOf="@+id/etDays"
+        app:layout_constraintTop_toTopOf="@+id/etDays" />
 
     <EditText
         android:id="@+id/etDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
         android:maxLength="3"
         android:textCursorDrawable="@android:color/background_dark"
         android:textSize="14sp"
+        android:gravity="center"
         app:backgroundTint="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@+id/tvDays"
-        app:layout_constraintTop_toBottomOf="@+id/tvDays" />
+        app:layout_constraintStart_toStartOf="@+id/etDesiredWeight"
+        app:layout_constraintTop_toBottomOf="@+id/etDesiredWeight" />
+
+    <TextView
+        android:id="@+id/tvHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Højde"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/etHeight"
+        app:layout_constraintStart_toEndOf="@+id/etHeight"
+        app:layout_constraintTop_toTopOf="@+id/etHeight" />
+
+    <EditText
+        android:id="@+id/etHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:maxLength="5"
+        android:textCursorDrawable="@android:color/background_dark"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:backgroundTint="@android:color/background_dark"
+        app:layout_constraintStart_toStartOf="@+id/etDays"
+        app:layout_constraintTop_toBottomOf="@+id/etDays" />
 
     <Button
         android:id="@+id/btnCreate"
@@ -122,31 +170,6 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHeight"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tvHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Højde"
-        android:textColor="@android:color/black"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/etDays"
-        app:layout_constraintTop_toBottomOf="@+id/etDays" />
-
-    <EditText
-        android:id="@+id/etHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
-        android:maxLength="5"
-        android:textCursorDrawable="@android:color/background_dark"
-        android:textSize="14sp"
-        app:backgroundTint="@android:color/background_dark"
-        app:layout_constraintStart_toStartOf="@+id/tvHeight"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeight" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
