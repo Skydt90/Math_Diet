@@ -48,7 +48,7 @@ public class Day
      */
     public Date getDayID()
     {
-        return dayID;
+        return this.dayID;
     }
     public String getSqlDate()
     {
@@ -134,6 +134,12 @@ public class Day
     public void addBodyWeighIn(BodyWeighIn bodyWeighIn)
     {
         bodyWeighIns.add(bodyWeighIn);
+    }
+
+    public String getDateAsDanishDisplayText()
+    {
+        DateFormat correctFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+        return correctFormat.format(this.dayID);
     }
 
     @Override

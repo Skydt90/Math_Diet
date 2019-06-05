@@ -116,7 +116,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         if (day.getDayID() != null)
         {
             resetColorAndBtnText();
-            tvDate.setText(day.getSqlDate());
+            tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
             tvMorningWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getMorningWeight()));

@@ -56,7 +56,7 @@ public class DayAdapter extends ArrayAdapter
         }
 
         Day day = days.get(position);
-        viewHolder.tvDate.setText(day.getSqlDate());
+        viewHolder.tvDate.setText(day.getDateAsDanishDisplayText());
         viewHolder.tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
         viewHolder.tvGoalWeight.append(" kg");
 

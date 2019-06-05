@@ -94,7 +94,7 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
             chartService = new ChartService();
             day = dayService.loadDayByPrimaryKey(dayID, dietID, this);
             day.setFoodWeighIns(foodWeighInService.readAllFoodWeighInsFromDay(day, this));
-            tvDate.setText(day.getSqlDate());
+            tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
             tvMorningWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getMorningWeight()));
