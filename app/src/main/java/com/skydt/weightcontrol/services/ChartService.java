@@ -32,7 +32,7 @@ public class ChartService
 
         lineDataSet = new LineDataSet(entries, "Målvægt");
 
-        styleLineDataSet(lineDataSet, false, Color.BLACK, 1);
+        styleLineDataSet(lineDataSet, false, Color.parseColor("#ff3300"), 1);
 
         return lineDataSet;
     }
@@ -50,7 +50,7 @@ public class ChartService
 
         lineDataSet = new LineDataSet(entries, "Aktuelle vægt");
 
-        styleLineDataSet(lineDataSet, true, Color.GRAY, 1);
+        styleLineDataSet(lineDataSet, true, Color.parseColor("#0000EE"), 1);
 
         return lineDataSet;
     }

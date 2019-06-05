@@ -154,12 +154,12 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
     private void populateAdapters()
     {
         List<FoodWeighIn> food = foodWeighInService.readAllFoodWeighInsFromDay(day, this);
-        ArrayAdapter<FoodWeighIn> foodAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, food);
+        ArrayAdapter<FoodWeighIn> foodAdapter = new ArrayAdapter<>(this, R.layout.custom_text_view_for_lists, food);
         lvFood.setAdapter(foodAdapter);
 
         BodyWeighInService bodyWeighInService = new BodyWeighInService();
         List<BodyWeighIn> body = bodyWeighInService.readAllBodyWeighIns(day, this);
-        ArrayAdapter<BodyWeighIn> bodyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, body);
+        ArrayAdapter<BodyWeighIn> bodyAdapter = new ArrayAdapter<>(this, R.layout.custom_text_view_for_lists, body);
         lvBody.setAdapter(bodyAdapter);
     }
 }
