@@ -3,6 +3,7 @@ package com.skydt.weightcontrol.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import java.util.Locale;
 public class DietActivity extends AppCompatActivity implements AdapterView.OnItemClickListener
 {
     private TextView tvName;
+    private TextView tvPeriod;
     private TextView tvStartWeight;
     private TextView tvDesiredWeight;
     private TextView tvNumberOfDays;
@@ -36,6 +38,8 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diet_activity);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         dayService = new DayService();
 
         loadInterface();
@@ -47,6 +51,7 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
     private void loadInterface()
     {
         tvName = findViewById(R.id.tvName);
+        tvPeriod = findViewById(R.id.tvPeriod);
         tvStartWeight = findViewById(R.id.tvStartWeight);
         tvDesiredWeight = findViewById(R.id.tvDesiredWeight);
         tvNumberOfDays = findViewById(R.id.tvNumberOfDays);
@@ -74,6 +79,7 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
         double totalWeightLoss = dietService.calculateTotalWeightLoss(diet);
 
         tvName.setText(diet.getDietName());
+        tvPeriod.setText(dayService.loadFirstAndLastDateInDanishFormat(dietID, this));
         tvStartWeight.setText(String.format(Locale.getDefault(), "%.1f", diet.getStartWeight()));
         tvStartWeight.append(" kg");
         tvDesiredWeight.setText(String.format(Locale.getDefault(), "%.1f", diet.getDesiredWeight()));

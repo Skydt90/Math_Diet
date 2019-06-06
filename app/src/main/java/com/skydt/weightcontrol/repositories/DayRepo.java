@@ -108,6 +108,47 @@ public class DayRepo
         return  days;
     }
 
+    public List<String> loadFirstAndLastDate(int dietID, Context context)
+    {
+        Log.d(TAG, "loadFirstAndLastDate: Called" );
+        appDatabase = AppDatabase.getInstance(context);
+        List<String> dates = new ArrayList<>();
+
+        try
+        {
+            database = appDatabase.getReadableDatabase();
+
+            String query = "SELECT MIN(" + DBContract.DayEntries.DAY_ID + ")," +
+                                 " MAX(" + DBContract.DayEntries.DAY_ID + ") FROM " +
+                                   DBContract.DayEntries.TABLE_NAME + " WHERE " +
+                                   DBContract.DayEntries.DIET_ID + " = " + dietID + ";";
+
+            cursor = database.rawQuery(query, null, null);
+
+            if(cursor != null && cursor.getCount() > 0)
+            {
+                cursor.moveToFirst();
+                dates.add(cursor.getString(0));
+                dates.add(cursor.getString(1));
+            }
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.d(TAG, "loadFirstAndLastDate: SQLiteException " + sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "loadFirstAndLastDate: SQLException " + sqle);
+        }
+        finally
+        {
+            database.close();
+            cursor.close();
+            Log.d(TAG, "loadFirstAndLastDate: Finished");
+        }
+        return dates;
+    }
+
     public Day loadDayByPrimaryKey(String dayID, int dietID, Context context)
     {
         Log.d(TAG, "loadDayByPrimaryKey: Called");

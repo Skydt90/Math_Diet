@@ -20,8 +20,8 @@
     <string name="slet_diæet_bekræft">Diæt slettet</string>
     <string name="slet_diæter">Ønsker du at slette alle diæter?</string>
     <string name="slet_diæter_bekræft">Alle diæter slettet</string>
-    <string name="registreret">Indtastning Registreret</string>
-    <string name="advarsel">ADVARSEL!</string>
+    <string name="registreret">Indtastning gemt</string>
+    <string name="advarsel">Advarsel!</string>
     <string name="ja">Ja</string>
     <string name="nej">Nej</string>
 </resources>

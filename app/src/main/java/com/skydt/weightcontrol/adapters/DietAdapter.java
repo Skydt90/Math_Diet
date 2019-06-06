@@ -18,13 +18,15 @@ public class DietAdapter extends ArrayAdapter
     private final int layoutResource;
     private final LayoutInflater layoutInflater;
     private List<Diet> diets;
+    private List<String> dates;
 
-    public DietAdapter(Context context, int resource, List<Diet> diets)
+    public DietAdapter(Context context, int resource, List<Diet> diets, List<String> dates)
     {
         super(context, resource);
         this.layoutInflater = LayoutInflater.from(context);
         this.layoutResource = resource;
         this.diets = diets;
+        this.dates = dates;
     }
 
     @Override
@@ -56,8 +58,9 @@ public class DietAdapter extends ArrayAdapter
 
         Diet diet = diets.get(position);
         viewHolder.tvName.setText(diet.getDietName());
+        viewHolder.tvDietPeriod.setText(dates.get(position));
         viewHolder.tvStartWeight.setText(String.format(Locale.getDefault(), "%.1f", diet.getStartWeight()));
-        viewHolder.tvStartWeight.append(" kg -> ");
+        viewHolder.tvStartWeight.append(" kg - ");
         viewHolder.tvDesiredWeight.setText(String.format(Locale.getDefault(), "%.1f", diet.getDesiredWeight()));
         viewHolder.tvDesiredWeight.append(" kg");
 
@@ -67,12 +70,14 @@ public class DietAdapter extends ArrayAdapter
     private class ViewHolder
     {
         final TextView tvName;
+        final TextView tvDietPeriod;
         final TextView tvStartWeight;
         final TextView tvDesiredWeight;
 
         ViewHolder(View v)
         {
             this.tvName = v.findViewById(R.id.tvName);
+            this.tvDietPeriod = v.findViewById(R.id.tvDietPeriod);
             this.tvStartWeight = v.findViewById(R.id.tvStartWeight);
             this.tvDesiredWeight = v.findViewById(R.id.tvDesiredWeight);
         }

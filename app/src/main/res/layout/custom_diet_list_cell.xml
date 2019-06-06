@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,12 +25,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:gravity="left"
         android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDietPeriod"
         app:layout_constraintEnd_toStartOf="@+id/tvDesiredWeight"
-        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintTop_toTopOf="@+id/tvName"
         tools:text="Start Weight" />
 
     <TextView
@@ -41,9 +42,19 @@
         android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvStartWeight"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Desired weight" />
+
+    <TextView
+        android:id="@+id/tvDietPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:text="TextView"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="05 juni - 30 august 2019" />
 </android.support.constraint.ConstraintLayout>

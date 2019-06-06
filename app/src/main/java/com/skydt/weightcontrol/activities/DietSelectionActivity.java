@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.adapters.DietAdapter;
 import com.skydt.weightcontrol.models.Diet;
+import com.skydt.weightcontrol.services.DayService;
 import com.skydt.weightcontrol.services.DietService;
 
 import java.util.List;
@@ -23,6 +25,7 @@ import java.util.List;
 public class DietSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener
 {
     private DietService dietService;
+    DayService dayService;
     private Intent intent;
     private int dietID;
     private List<Diet> diets;
@@ -33,7 +36,10 @@ public class DietSelectionActivity extends AppCompatActivity implements AdapterV
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diet_selection_activity);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         dietService = new DietService();
+        dayService = new DayService();
         loadInterface();
     }
 
@@ -42,7 +48,9 @@ public class DietSelectionActivity extends AppCompatActivity implements AdapterV
         ListView listView = findViewById(R.id.lvDiets);
 
         diets = dietService.loadAllDiets(this);
-        DietAdapter dietAdapter = new DietAdapter(this, R.layout.custom_diet_list_cell, diets);
+        List<String> dates = dayService.loadAllStartAndEndDates(diets, this);
+
+        DietAdapter dietAdapter = new DietAdapter(this, R.layout.custom_diet_list_cell, diets, dates);
         listView.setAdapter(dietAdapter);
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);

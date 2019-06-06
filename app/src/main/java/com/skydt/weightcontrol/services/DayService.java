@@ -9,7 +9,9 @@ import com.skydt.weightcontrol.models.FoodWeighIn;
 import com.skydt.weightcontrol.repositories.DayRepo;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +49,43 @@ public class DayService
         Day day = dayRepo.loadDayByPrimaryKey(dayID, dietID, context);
         Log.d(TAG, "loadDayByPrimaryKey: Finished");
         return day;
+    }
+
+    public String loadFirstAndLastDateInDanishFormat(int dietID, Context context)
+    {
+        List<String> dates = dayRepo.loadFirstAndLastDate(dietID, context);
+        DateFormat correctFormat;
+
+        if (dates.size() > 0)
+        {
+            String first = dates.get(0);
+            String last = dates.get(1);
+            try
+            {
+                correctFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Date date1 = correctFormat.parse(first);
+                Date date2 = correctFormat.parse(last);
+                correctFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+                first = correctFormat.format(date1);
+                last = correctFormat.format(date2);
+            }
+            catch (ParseException pe)
+            {
+                Log.d(TAG, "loadFirstAndLastDateInDanishFormat: Error parsing date "+ pe);
+            }
+            return first.substring(0, first.length() - 5) + " - " + last;
+        }
+        return "";
+    }
+
+    public List<String> loadAllStartAndEndDates(List<Diet> diets, Context context)
+    {
+        List<String> dates = new ArrayList<>();
+        for (Diet diet: diets)
+        {
+            dates.add(loadFirstAndLastDateInDanishFormat(diet.getDietID(), context));
+        }
+        return dates;
     }
 
     // Called after morning weigh in to calculate the total amount for the day
