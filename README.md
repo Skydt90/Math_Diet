@@ -6,13 +6,13 @@ For this assignment I chose to create an app which aims to simplify the usage of
 https://weightctrlblog.wordpress.com/2017/01/13/first-blog-post/
 
 ## Noteworthy implementations
-### Data storage:
-https://www.sqlite.org/index.html  
+### Data storage: sqlite
 A versatile, self-contained and powerful relational SQLdatabase engine, embedded directly into the app.
+https://www.sqlite.org/index.html  
 
-### Graphs for data display:
-https://github.com/PhilJay/MPAndroidChart  
+### Graphs for data display: MPAndroidChart 
 A third party tool designed to allow for data graphs in android apps.
+https://github.com/PhilJay/MPAndroidChart 
 
 ## Install instructions
 
