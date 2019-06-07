@@ -10,8 +10,8 @@ https://weightctrlblog.wordpress.com/2017/01/13/first-blog-post/
 A versatile, self-contained and powerful relational SQLdatabase engine, embedded directly into the app.
 https://www.sqlite.org/index.html  
 
-### Graphs for data display: MPAndroidChart 
-A third party tool designed to allow for data graphs in android apps.
+### Graphs for data display: MPAndroidChart   
+A third party tool designed to allow for data graphs in android apps.  
 https://github.com/PhilJay/MPAndroidChart 
 
 ## Install instructions
