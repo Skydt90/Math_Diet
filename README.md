@@ -7,7 +7,7 @@ https://weightctrlblog.wordpress.com/2017/01/13/first-blog-post/
 
 ## Noteworthy implementations
 ### Data storage: sqlite
-A versatile, self-contained and powerful relational SQLdatabase engine, embedded directly into the app.
+A versatile, self-contained and powerful relational SQL database engine, embedded directly into the app.
 https://www.sqlite.org/index.html  
 
 ### Graphs for data display: MPAndroidChart   
