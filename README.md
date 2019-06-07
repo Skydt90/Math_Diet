@@ -7,11 +7,11 @@ https://weightctrlblog.wordpress.com/2017/01/13/first-blog-post/
 
 ## Noteworthy implementations
 ### Data storage:
-https://www.sqlite.org/index.html
+https://www.sqlite.org/index.html  
 A versatile, self-contained and powerful relational SQLdatabase engine, embedded directly into the app.
 
 ### Graphs for data display:
-https://github.com/PhilJay/MPAndroidChart
+https://github.com/PhilJay/MPAndroidChart  
 A third party tool designed to allow for data graphs in android apps.
 
 ## Install instructions
