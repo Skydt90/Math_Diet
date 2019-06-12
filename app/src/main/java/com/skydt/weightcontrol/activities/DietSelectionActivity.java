@@ -25,7 +25,7 @@ import java.util.List;
 public class DietSelectionActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener
 {
     private DietService dietService;
-    DayService dayService;
+    private DayService dayService;
     private Intent intent;
     private int dietID;
     private List<Diet> diets;

@@ -43,6 +43,11 @@ public class ChartService
 
         List<Entry> entries = new ArrayList<>();
 
+        if (bodyWeighIns.size() > 0)
+        {
+            bodyWeighIns.remove(0);  // Remove first, since it's not technically part of the diet
+        }
+
         for (int i = 0; i < bodyWeighIns.size(); i ++)
         {
             entries.add(new Entry((float)i + 1, (float)bodyWeighIns.get(i).getBodyWeight()));
