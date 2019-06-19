@@ -30,7 +30,6 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private static final String TAG = "MainMenuActivity";
     private Button btnGoToDiet;
     private Button btnGoToDay;
     private Button btnBodyWeighIn;
