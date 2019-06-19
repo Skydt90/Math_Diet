@@ -117,6 +117,18 @@ public class ChartService
 
         List<PieEntry> entries = new ArrayList<>();
 
+        double total = 0;
+        for (int i = 0; i < distribution.length; i++)
+        {
+            total += distribution[i];
+        }
+        if (total <= 0)
+        {
+            for (int i = 0; i < distribution.length; i++)
+            {
+                distribution[i] = 0;
+            }
+        }
         entries.add(new PieEntry((float)distribution[0], "Morgen"));
         entries.add(new PieEntry((float)distribution[1], "Middag"));
         entries.add(new PieEntry((float)distribution[2], "Aften"));
