@@ -50,9 +50,9 @@ public class ChartService
             entries.add(new Entry((float)i + 1, (float)bodyWeighIns.get(i).getBodyWeight()));
         }
 
-        lineDataSet = new LineDataSet(entries, "Aktuelle vægt");
+        lineDataSet = new LineDataSet(entries, "Aktuel Vægt");
 
-        styleLineDataSet(lineDataSet, true, Color.parseColor("#0000EE"), 1);
+        styleLineDataSet(lineDataSet, false, Color.parseColor("#0000EE"), 1.5f);
         return lineDataSet;
     }
 
@@ -141,11 +141,12 @@ public class ChartService
     private void styleLineDataSet(LineDataSet dataSet, boolean drawCircles, int color, float lineWidth)
     {
         dataSet.setDrawCircles(drawCircles);
+        dataSet.setCircleRadius(2f);
         dataSet.setColor(color);
         dataSet.setCircleColor(color);
         dataSet.setLineWidth(lineWidth);
         dataSet.setDrawValues(false);
-        dataSet.setDrawCircleHole(drawCircles);
+        dataSet.setDrawCircleHole(true);
     }
 
     public void setLineChartStyle(LineChart lineChart)
