@@ -193,10 +193,22 @@ public class DayService
 
     public double[] getRecommendedFoodDistribution(double allowedFoodIntake)
     {
-        double[] foodDistribution = new double[3];
-        foodDistribution[0] = (allowedFoodIntake / 100 * 25);
-        foodDistribution[1] = (allowedFoodIntake / 100 * 30);
-        foodDistribution[2] = (allowedFoodIntake / 100 * 45);
+        double[] foodDistribution = new double[4];
+
+        if (allowedFoodIntake >= 3000.0)
+        {
+            foodDistribution[0] = 0;
+            foodDistribution[1] = 0;
+            foodDistribution[2] = 0;
+            foodDistribution[3] = 0;
+        }
+        else
+        {
+            foodDistribution[0] = (allowedFoodIntake / 100 * 22);
+            foodDistribution[1] = (allowedFoodIntake / 100 * 30);
+            foodDistribution[2] = (allowedFoodIntake / 100 * 33);
+            foodDistribution[3] = (allowedFoodIntake / 100 * 10);
+        }
         return  foodDistribution;
     }
 

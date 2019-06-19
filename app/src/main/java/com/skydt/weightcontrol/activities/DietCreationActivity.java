@@ -83,6 +83,14 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         {
             dietService.setError(etHeight, "Din højde mangler");
         }
+        else if (Double.parseDouble(etCurrentWeight.getText().toString()) == 0)
+        {
+            dietService.setError(etCurrentWeight, "Må ikke være 0");
+        }
+        else if (Double.parseDouble(etDesiredWeight.getText().toString()) == 0)
+        {
+            dietService.setError(etDesiredWeight, "Må ikke være 0");
+        }
         else
         {
             double dailyWeightLoss = dietService.calculateDailyWeightLoss(Double.parseDouble(etCurrentWeight.getText().toString()),

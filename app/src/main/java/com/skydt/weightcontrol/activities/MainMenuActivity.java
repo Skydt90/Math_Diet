@@ -30,11 +30,11 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
+    private Button btnGoToDay;
     private Button btnBodyWeighIn;
     private Button btnFood;
     private TextView tvCurrentDiet;
     private TextView tvDate;
-    private TextView tvDailyWeightLoss;
     private TextView tvGoalWeight;
     private TextView tvMorningWeight;
     private TextView tvAllowedFood;
@@ -62,10 +62,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void loadInterface()
     {
-        Button btnNewDiet = findViewById(R.id.btnGoToDiet);
-        btnNewDiet.setOnClickListener(this);
-        Button btnAllDiets = findViewById(R.id.btnGoToDay);
-        btnAllDiets.setOnClickListener(this);
+        Button btnGoToDiet = findViewById(R.id.btnGoToDiet);
+        btnGoToDiet.setOnClickListener(this);
+        btnGoToDay = findViewById(R.id.btnGoToDay);
+        btnGoToDay.setOnClickListener(this);
         btnBodyWeighIn = findViewById(R.id.btnBodyWeighIn);
         btnBodyWeighIn.setOnClickListener(this);
         btnFood = findViewById(R.id.btnFood);
@@ -73,7 +73,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         tvCurrentDiet = findViewById(R.id.tvCurrentDiet);
         tvDate = findViewById(R.id.tvDate);
-        tvDailyWeightLoss = findViewById(R.id.tvDailyWeightLoss);
         tvGoalWeight = findViewById(R.id.tvGoalWeight);
         tvMorningWeight = findViewById(R.id.tvMorningWeight);
         tvAllowedFood = findViewById(R.id.tvAllowedFood);
@@ -113,12 +112,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         diet = dietService.loadDietByID(dietID, this);
 
         tvCurrentDiet.setText(diet.getDietName());
-        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.0f", dietService.calculateDailyWeightLossInGram(diet)));
-        tvDailyWeightLoss.append(" g");
 
         if (day.getDayID() != null)
         {
-            resetColorAndBtnText();
             tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
@@ -145,9 +141,15 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvMorningWeight.setTextColor(Color.GRAY);
         tvAllowedFood.setTextColor(Color.GRAY);
         tvBMI.setTextColor(Color.GRAY);
+        tvDate.setTextColor(Color.GRAY);
         btnBodyWeighIn.setText(R.string.krop);
+
         btnFood.setClickable(true);
         btnFood.setAlpha(1);
+        btnGoToDay.setClickable(true);
+        btnGoToDay.setAlpha(1);
+        btnBodyWeighIn.setClickable(true);
+        btnBodyWeighIn.setAlpha(1);
     }
 
     private void hideBtnAndAdjustText()
@@ -177,6 +179,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvAllowedFood.setText(R.string.done);
         tvBMI.setText(String.format(Locale.getDefault(), "%.1f", dietService.calculateBMI(diet.getDesiredWeight(), diet.getHeight())));
 
+        btnGoToDay.setClickable(false);
+        btnGoToDay.setAlpha(0.2f);
         btnBodyWeighIn.setClickable(false);
         btnBodyWeighIn.setAlpha(0.2f);
         btnFood.setClickable(false);
@@ -293,6 +297,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onRestart()
     {
+        resetColorAndBtnText();
         setupInterfaceBasedOnSharedPreferences();
         super.onRestart();
     }

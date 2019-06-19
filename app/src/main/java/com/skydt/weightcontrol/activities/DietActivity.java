@@ -24,6 +24,7 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView tvPeriod;
     private TextView tvStartWeight;
     private TextView tvDesiredWeight;
+    private TextView tvDailyWeightLoss;
     private TextView tvNumberOfDays;
     private TextView tvTotalWeightLoss;
     private ListView lvDays;
@@ -54,6 +55,7 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
         tvPeriod = findViewById(R.id.tvPeriod);
         tvStartWeight = findViewById(R.id.tvStartWeight);
         tvDesiredWeight = findViewById(R.id.tvDesiredWeight);
+        tvDailyWeightLoss = findViewById(R.id.tvDailyWeightLoss);
         tvNumberOfDays = findViewById(R.id.tvNumberOfDays);
         tvTotalWeightLoss = findViewById(R.id.tvTotalWeightLoss);
         lvDays = findViewById(R.id.lvDays);
@@ -84,6 +86,8 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
         tvStartWeight.append(" kg");
         tvDesiredWeight.setText(String.format(Locale.getDefault(), "%.1f", diet.getDesiredWeight()));
         tvDesiredWeight.append(" kg");
+        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.0f", dietService.calculateDailyWeightLossInGram(diet)));
+        tvDailyWeightLoss.append(" g");
         tvNumberOfDays.setText(dietService.calculateDietProgress(diet));
         tvTotalWeightLoss.setText(String.format(Locale.getDefault(), "%.1f", totalWeightLoss));
         tvTotalWeightLoss.append(" kg");
