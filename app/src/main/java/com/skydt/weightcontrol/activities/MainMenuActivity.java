@@ -36,7 +36,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private Button btnFood;
     private TextView tvCurrentDiet;
     private TextView tvDate;
-    private TextView tvDailyWeightLoss;
     private TextView tvGoalWeight;
     private TextView tvMorningWeight;
     private TextView tvAllowedFood;
@@ -75,7 +74,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         tvCurrentDiet = findViewById(R.id.tvCurrentDiet);
         tvDate = findViewById(R.id.tvDate);
-        tvDailyWeightLoss = findViewById(R.id.tvDailyWeightLoss);
         tvGoalWeight = findViewById(R.id.tvGoalWeight);
         tvMorningWeight = findViewById(R.id.tvMorningWeight);
         tvAllowedFood = findViewById(R.id.tvAllowedFood);
@@ -115,12 +113,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         diet = dietService.loadDietByID(dietID, this);
 
         tvCurrentDiet.setText(diet.getDietName());
-        tvDailyWeightLoss.setText(String.format(Locale.getDefault(), "%.0f", dietService.calculateDailyWeightLossInGram(diet)));
-        tvDailyWeightLoss.append(" g");
 
         if (day.getDayID() != null)
         {
-            //resetColorAndBtnText();
             tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
