@@ -117,12 +117,7 @@ public class ChartService
 
         List<PieEntry> entries = new ArrayList<>();
 
-        double total = 0;
-        for (int i = 0; i < distribution.length; i++)
-        {
-            total += distribution[i];
-        }
-        if (total <= 0)
+        if (distribution[0] <= 0)
         {
             for (int i = 0; i < distribution.length; i++)
             {
@@ -132,6 +127,7 @@ public class ChartService
         entries.add(new PieEntry((float)distribution[0], "Morgen"));
         entries.add(new PieEntry((float)distribution[1], "Middag"));
         entries.add(new PieEntry((float)distribution[2], "Aften"));
+        entries.add(new PieEntry((float)distribution[3], "Snack"));
 
         PieDataSet set = new PieDataSet(entries, "");
 

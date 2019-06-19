@@ -30,7 +30,6 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private Button btnGoToDiet;
     private Button btnGoToDay;
     private Button btnBodyWeighIn;
     private Button btnFood;
@@ -63,7 +62,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void loadInterface()
     {
-        btnGoToDiet = findViewById(R.id.btnGoToDiet);
+        Button btnGoToDiet = findViewById(R.id.btnGoToDiet);
         btnGoToDiet.setOnClickListener(this);
         btnGoToDay = findViewById(R.id.btnGoToDay);
         btnGoToDay.setOnClickListener(this);
