@@ -24,7 +24,6 @@ public class ChartService
     public LineDataSet getDietWeightRange(Diet diet)
     {
         LineDataSet lineDataSet; // contains values to 1 graph
-
         List<Entry> entries = new ArrayList<>(); // the x, y values of the graph
 
         entries.add(new Entry(1,(int)diet.getStartWeight())); // day one
@@ -33,15 +32,18 @@ public class ChartService
         lineDataSet = new LineDataSet(entries, "Målvægt");
 
         styleLineDataSet(lineDataSet, false, Color.parseColor("#ff3300"), 1);
-
         return lineDataSet;
     }
 
     public LineDataSet getLastWeighInOfDays(List<BodyWeighIn> bodyWeighIns)
     {
         LineDataSet lineDataSet;
-
         List<Entry> entries = new ArrayList<>();
+
+        if (bodyWeighIns.size() > 0)
+        {
+            bodyWeighIns.remove(0);  // Remove first, since it's not technically part of the diet
+        }
 
         for (int i = 0; i < bodyWeighIns.size(); i ++)
         {
@@ -51,7 +53,6 @@ public class ChartService
         lineDataSet = new LineDataSet(entries, "Aktuelle vægt");
 
         styleLineDataSet(lineDataSet, true, Color.parseColor("#0000EE"), 1);
-
         return lineDataSet;
     }
 
@@ -107,7 +108,6 @@ public class ChartService
         setPieDataSetStyle(set, 15, ColorTemplate.COLORFUL_COLORS);
 
         pieData = new PieData(set);
-
         return pieData;
     }
 

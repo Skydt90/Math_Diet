@@ -98,7 +98,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         String dwl = String.format(Locale.getDefault(), "%.0f", dailyWeightLoss * 1000);
         AlertDialog alertDialog;
 
-        if (dailyWeightLoss >= 150 && dailyWeightLoss < 250)
+        if (dailyWeightLoss >= 0.150 && dailyWeightLoss < 0.250)
         {
             alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
                                 "\n" + dwl + " gram per dag." +
@@ -123,7 +123,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
             alertDialog = alertBox.create();
             alertDialog.setTitle("Advarsel!");
         }
-        else if (dailyWeightLoss >= 250)
+        else if (dailyWeightLoss >= 0.250)
         {
             alertBox.setMessage("Dit daglige vægttab er beregnet til:" +
                                 "\n" + dwl + " gram per dag." +

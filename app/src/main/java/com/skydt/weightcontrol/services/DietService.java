@@ -86,7 +86,7 @@ public class DietService
 
     public String calculateDietProgress(Diet diet)
     {
-        double current = (double)diet.getDays().size();
+        double current = (double)diet.getDays().size() - 1;
         double total = (double)diet.getNumberOfDays();
         double result = current / total * 100;
 
