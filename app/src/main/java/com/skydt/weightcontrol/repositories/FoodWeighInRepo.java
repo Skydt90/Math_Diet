@@ -75,7 +75,7 @@ public class FoodWeighInRepo
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast())
                 {
-                    FoodWeighIn foodWeighIn = new FoodWeighIn(day.getDayID(), day.getDietID(), cursor.getDouble(3), cursor.getString(4));
+                    FoodWeighIn foodWeighIn = new FoodWeighIn(day.getDayID(), day.getDietID(), cursor.getDouble(3), cursor.getString(4), cursor.getInt(0));
                     foodWeighIns.add(foodWeighIn);
                     cursor.moveToNext();
                 }
@@ -96,5 +96,32 @@ public class FoodWeighInRepo
             Log.d(TAG, "readAllFoodWeighInsFromDay: Finished");
         }
         return foodWeighIns;
+    }
+
+    public void deleteFoodWeighInByID(int foodWeighInID, Context context)
+    {
+        appDatabase = AppDatabase.getInstance(context);
+        try
+        {
+            database = appDatabase.getWritableDatabase();
+
+            String selection = DBContract.FoodWeightEntries.FOOD_ID + " = ?";
+            String[] selectionArgs = {(Integer.toString(foodWeighInID))};
+            int deleteRows = database.delete(DBContract.FoodWeightEntries.TABLE_NAME, selection, selectionArgs);
+
+            Log.d(TAG, "deleteFoodWeighInByID: finished with: " + deleteRows + " deleted rows");
+        }
+        catch(SQLiteException sqle)
+        {
+            Log.d(TAG, "deleteFoodWeighInByID SQLiteException thrown: " + sqle );
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "deleteFoodWeighInByID SQLException thrown: " + sqle);
+        }
+        finally
+        {
+            database.close();
+        }
     }
 }

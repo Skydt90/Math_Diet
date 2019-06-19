@@ -38,6 +38,13 @@ public class FoodWeighInService
         return foodWeighIns;
     }
 
+    public void deleteFoodWeighInByID(int foodWeighInID, Context context)
+    {
+        Log.d(TAG, "deleteFoodWeighInByID: called");
+        foodWeighInRepo.deleteFoodWeighInByID(foodWeighInID, context);
+        Log.d(TAG, "deleteFoodWeighInByID: finished");
+    }
+
     /*
     BUSINESS LOGIC
      */

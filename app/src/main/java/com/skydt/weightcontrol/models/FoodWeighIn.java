@@ -11,6 +11,7 @@ public class FoodWeighIn
     private int dietID;
     private double foodWeighIn;
     private String mealType;
+    private int foodWeighInID;
 
     /*
     Constructors
@@ -23,9 +24,17 @@ public class FoodWeighIn
         this.mealType = mealType;
     }
 
+    public FoodWeighIn(Date dayID, int dietID, double foodWeighIn, String mealType, int foodWeighInID) {
+        this.dayID = dayID;
+        this.dietID = dietID;
+        this.foodWeighIn = foodWeighIn;
+        this.mealType = mealType;
+        this.foodWeighInID = foodWeighInID;
+    }
+
     /*
-    Getters
-     */
+        Getters
+         */
     public String getSQLDayID()
     {
         DateFormat correctFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -40,6 +49,7 @@ public class FoodWeighIn
     {
         return foodWeighIn;
     }
+    public int getFoodWeighInID() { return foodWeighInID; }
 
     /*
     Setters

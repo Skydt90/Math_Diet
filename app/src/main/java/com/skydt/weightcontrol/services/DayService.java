@@ -124,6 +124,13 @@ public class DayService
         Log.d(TAG, "updateLikeOnDay: Finished");
     }
 
+    public void deleteMorningWeight(Day day, Context context)
+    {
+        Log.d(TAG, "deleteMorningWeight: Called");
+        dayRepo.updateMorningWeight(day, context);
+        Log.d(TAG, "deleteMorningWeight: Finished");
+    }
+
 
     /*
     BUSINESS LOGIC

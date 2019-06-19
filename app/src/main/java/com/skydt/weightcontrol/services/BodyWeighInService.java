@@ -49,6 +49,12 @@ public class BodyWeighInService
         return bodyWeighInRepo.readLastBodyWeighInFromDay(day, context);
     }
 
+    public void deleteBodyWeighInByID(int bodyWeighInID, Context context)
+    {
+        Log.d(TAG, "deleteBodyWeighInByID: Called");
+        bodyWeighInRepo.deleteBodyWeighInByID(bodyWeighInID, context);
+        Log.d(TAG, "deleteBodyWeighInByID: Finished");
+    }
 
     /*
     BUSINESS LOGIC
