@@ -55,7 +55,7 @@ public class BodyWeighInRepo
 
     public List<BodyWeighIn> readAllBodyWeighInsFromDay(Day day, Context context)
     {
-        Log.d(TAG, "readAllBodyWeighIns: Called");
+        Log.d(TAG, "readAllBodyWeighInsFromDay: Called");
         List<BodyWeighIn> bodyWeighIns = new ArrayList<>();
 
         appDatabase = AppDatabase.getInstance(context);
@@ -83,11 +83,11 @@ public class BodyWeighInRepo
         }
         catch (SQLiteException sqle)
         {
-            Log.d(TAG, "readAllBodyWeighIns SQLite exception thrown: " + sqle);
+            Log.d(TAG, "readAllBodyWeighInsFromDay SQLite exception thrown: " + sqle);
         }
         catch (SQLException sqle)
         {
-            Log.d(TAG, "readAllBodyWeighIns SQL exception thrown: " + sqle);
+            Log.d(TAG, "readAllBodyWeighInsFromDay SQL exception thrown: " + sqle);
         }
         finally
         {

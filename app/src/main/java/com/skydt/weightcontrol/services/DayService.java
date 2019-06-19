@@ -3,6 +3,7 @@ package com.skydt.weightcontrol.services;
 import android.content.Context;
 import android.util.Log;
 
+import com.skydt.weightcontrol.models.BodyWeighIn;
 import com.skydt.weightcontrol.models.Day;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.models.FoodWeighIn;
@@ -123,14 +124,6 @@ public class DayService
         dayRepo.updateLikeOnDay(day, context, like);
         Log.d(TAG, "updateLikeOnDay: Finished");
     }
-
-    public void deleteMorningWeight(Day day, Context context)
-    {
-        Log.d(TAG, "deleteMorningWeight: Called");
-        dayRepo.updateMorningWeight(day, context);
-        Log.d(TAG, "deleteMorningWeight: Finished");
-    }
-
 
     /*
     BUSINESS LOGIC

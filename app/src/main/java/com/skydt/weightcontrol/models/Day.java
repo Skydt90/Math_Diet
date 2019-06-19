@@ -77,8 +77,9 @@ public class Day
     }
     public List<FoodWeighIn> getFoodWeighIns()
     {
-        return foodWeighIns;
+        return this.foodWeighIns;
     }
+    public List<BodyWeighIn> getBodyWeighIns() {return this.bodyWeighIns;}
 
 
     /*
@@ -103,6 +104,10 @@ public class Day
     public void setFoodWeighIns(List<FoodWeighIn> foodWeighIns)
     {
         this.foodWeighIns = foodWeighIns;
+    }
+    public void setBodyWeighIns(List<BodyWeighIn> bodyWeighIns)
+    {
+        this.bodyWeighIns = bodyWeighIns;
     }
     public void setDayIDByString(String date)
     {

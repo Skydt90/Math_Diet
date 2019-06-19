@@ -116,9 +116,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         if (day.getDayID() != null)
         {
             if (dietService.getDietProgress(diet) == 0)
-            {
-
-            }
+            {}
             tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");

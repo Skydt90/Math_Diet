@@ -29,12 +29,10 @@ public class BodyWeighInService
         Log.d(TAG, "createWeighIn: Finished");
     }
 
-    public List<BodyWeighIn> readAllBodyWeighIns(Day day, Context context)
+    public List<BodyWeighIn> readAllBodyWeighInsFromDay(Day day, Context context)
     {
-        Log.d(TAG, "readAllBodyWeighIns: Called");
-        List<BodyWeighIn> bodyWeighIns = bodyWeighInRepo.readAllBodyWeighInsFromDay(day, context);
-        addBodyWeighInsToDay(day, bodyWeighIns);
-        return  bodyWeighIns;
+        Log.d(TAG, "readAllBodyWeighInsFromDay: Called");
+        return bodyWeighInRepo.readAllBodyWeighInsFromDay(day, context);
     }
 
     public List<BodyWeighIn> readLastBodyWeighInFromCompletedDaysInDiet(List<Day> completedDays, Context context)
@@ -59,11 +57,4 @@ public class BodyWeighInService
     /*
     BUSINESS LOGIC
      */
-    private void addBodyWeighInsToDay(Day day, List<BodyWeighIn> foodWeighIns)
-    {
-        for (BodyWeighIn bodyWeighIn: foodWeighIns)
-        {
-            day.addBodyWeighIn(bodyWeighIn);
-        }
-    }
 }

@@ -33,9 +33,7 @@ public class FoodWeighInService
     public List<FoodWeighIn> readAllFoodWeighInsFromDay(Day day, Context context)
     {
         Log.d(TAG, "readAllFoodWeighInsFromDay: Called");
-        List<FoodWeighIn> foodWeighIns = foodWeighInRepo.readAllFoodWeighInsFromDay(day, context);
-        addFoodWeighInsToDay(day, foodWeighIns);
-        return foodWeighIns;
+        return foodWeighInRepo.readAllFoodWeighInsFromDay(day, context);
     }
 
     public void deleteFoodWeighInByID(int foodWeighInID, Context context)
@@ -48,14 +46,6 @@ public class FoodWeighInService
     /*
     BUSINESS LOGIC
      */
-    private void addFoodWeighInsToDay(Day day, List<FoodWeighIn> foodWeighIns)
-    {
-        for (FoodWeighIn foodWeighIn: foodWeighIns)
-        {
-            day.addFoodWeighIn(foodWeighIn);
-        }
-    }
-
     private double convertGramToKG(double input)
     {
         return input /= 1000;

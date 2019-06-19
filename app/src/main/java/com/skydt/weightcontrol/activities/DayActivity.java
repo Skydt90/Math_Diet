@@ -19,7 +19,6 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.models.BodyWeighIn;
 import com.skydt.weightcontrol.models.Day;
-import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.models.FoodWeighIn;
 import com.skydt.weightcontrol.services.BodyWeighInService;
 import com.skydt.weightcontrol.services.ChartService;
@@ -42,13 +41,12 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
     private PieChart pieChart;
     private ChartService chartService;
     private FoodWeighInService foodWeighInService;
+    private BodyWeighInService bodyWeighInService;
     private CheckBox cbLikeDay;
     private DayService dayService;
-    private AlertDialog.Builder alertBox;
 
     private int dietID;
     private String dayID;
-
     private Day day;
 
     @Override
@@ -78,8 +76,14 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
         cbLikeDay = findViewById(R.id.cbLikeDay);
         Button btnFoodDistribution = findViewById(R.id.btnPieChart);
         btnFoodDistribution.setOnClickListener(this);
+
         lvBody.setOnItemLongClickListener(this);
         lvFood.setOnItemLongClickListener(this);
+
+        foodWeighInService = new FoodWeighInService();
+        bodyWeighInService = new BodyWeighInService();
+        chartService = new ChartService();
+        dayService = new DayService();
     }
 
     private void extractIntent()
@@ -101,16 +105,16 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
     {
         if (dietID != 0 && !dayID.equals(""))
         {
-            DayService dayService = new DayService();
-            foodWeighInService = new FoodWeighInService();
-            chartService = new ChartService();
             day = dayService.loadDayByPrimaryKey(dayID, dietID, this);
             day.setFoodWeighIns(foodWeighInService.readAllFoodWeighInsFromDay(day, this));
+            day.setBodyWeighIns(bodyWeighInService.readAllBodyWeighInsFromDay(day, this));
+
             tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
             tvMorningWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getMorningWeight()));
             tvMorningWeight.append(" kg");
+
             if (day.getMorningWeight() == 0)
             {
                 tvAllowedFood.setText(R.string.error);
@@ -160,67 +164,88 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id)
     {
-        Log.d(TAG, "onItemLongClick: called");
-
-        alertBox = new AlertDialog.Builder(this);
-
-        switch (parent.getId())
+        if (!day.getSqlDate().equals(dayService.getCurrentDateAsString()))
         {
-            case R.id.lvBody:
-                final BodyWeighIn bodyWeighIn = (BodyWeighIn) parent.getItemAtPosition(position);
-                alertBox.setMessage("Slet Kropsvejning").setCancelable(false)
-                        .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                BodyWeighInService bodyWeighInService = new BodyWeighInService();
-                                bodyWeighInService.deleteBodyWeighInByID(bodyWeighIn.getBodyWeighInID(), DayActivity.this);
-                                Toast.makeText(DayActivity.this, "Vejning Slettet", Toast.LENGTH_LONG).show();
-                                populateAdapters();
-                            }
-                        })
-                        .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                dialog.cancel();
-                            }
-                        });
-                break;
-            case R.id.lvFood:
-                final FoodWeighIn foodWeighIn = (FoodWeighIn) parent.getItemAtPosition(position);
-                alertBox.setMessage("Slet Madvejning").setCancelable(false)
-                        .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                FoodWeighInService foodWeighInService = new FoodWeighInService();
-                                foodWeighInService.deleteFoodWeighInByID(foodWeighIn.getFoodWeighInID(), DayActivity.this);
-                                Toast.makeText(DayActivity.this, "Vejning Slettet", Toast.LENGTH_LONG).show();
-                                populateInterface();
-                            }
-                        })
-                        .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                dialog.cancel();
-                            }
-                        });
-                break;
-            default:
-                break;
+            Toast.makeText(this, "Ugyldig sletning!", Toast.LENGTH_LONG).show();
         }
-
-        AlertDialog alertDialog = alertBox.create();
-        alertDialog.setTitle(R.string.advarsel);
-        alertDialog.show();
-
-
+        else
+        {
+            AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
+            switch (parent.getId())
+            {
+                case R.id.lvBody:
+                    final BodyWeighIn bodyWeighIn = (BodyWeighIn) parent.getItemAtPosition(position);
+                    if (day.getBodyWeighIns().indexOf(bodyWeighIn) != 0)
+                    {
+                        Toast.makeText(DayActivity.this, "Kan kun slette seneste vejning!", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        alertBox.setMessage("Ønsker du at slette vægten?").setCancelable(false).setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                bodyWeighInService.deleteBodyWeighInByID(bodyWeighIn.getBodyWeighInID(), DayActivity.this);
+                                day.getBodyWeighIns().remove(bodyWeighIn);
+                                if (!day.getBodyWeighIns().isEmpty())
+                                {
+                                    dayService.updateAllowedFoodIntakeBasedOnBodyWeighIn(day, day.getBodyWeighIns().get(0).getBodyWeight(), DayActivity.this);
+                                    populateAdapters();
+                                }
+                                else
+                                {
+                                    day.setMorningWeight(0);
+                                    dayService.updateMorningWeight(day, day.getMorningWeight(), DayActivity.this);
+                                    populateInterface();
+                                }
+                                Toast.makeText(DayActivity.this, "Vægt slettet", Toast.LENGTH_LONG).show();
+                            }
+                        })
+                                .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertBox.create();
+                        alertDialog.setTitle(R.string.advarsel);
+                        alertDialog.show();
+                    }
+                    break;
+                case R.id.lvFood:
+                    final FoodWeighIn foodWeighIn = (FoodWeighIn) parent.getItemAtPosition(position);
+                    alertBox.setMessage("Ønsker du at slette madindtastningen?").setCancelable(false)
+                            .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    foodWeighInService.deleteFoodWeighInByID(foodWeighIn.getFoodWeighInID(), DayActivity.this);
+                                    dayService.updateAllowedFoodIntakeBasedOnFoodWeighIn(day, -foodWeighIn.getFoodWeighIn(), DayActivity.this);
+                                    day.getFoodWeighIns().remove(foodWeighIn);
+                                    Toast.makeText(DayActivity.this, "Indtastning slettet", Toast.LENGTH_LONG).show();
+                                    populateInterface();
+                                }
+                            })
+                            .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alertDialog = alertBox.create();
+                    alertDialog.setTitle(R.string.advarsel);
+                    alertDialog.show();
+                    break;
+                default:
+                    break;
+            }
+        }
         return true;
     }
 
@@ -232,13 +257,9 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
 
     private void populateAdapters()
     {
-        List<FoodWeighIn> food = foodWeighInService.readAllFoodWeighInsFromDay(day, this);
-        ArrayAdapter<FoodWeighIn> foodAdapter = new ArrayAdapter<>(this, R.layout.custom_text_view_for_lists, food);
+        ArrayAdapter<FoodWeighIn> foodAdapter = new ArrayAdapter<>(this, R.layout.custom_text_view_for_lists, day.getFoodWeighIns());
         lvFood.setAdapter(foodAdapter);
-
-        BodyWeighInService bodyWeighInService = new BodyWeighInService();
-        List<BodyWeighIn> body = bodyWeighInService.readAllBodyWeighIns(day, this);
-        ArrayAdapter<BodyWeighIn> bodyAdapter = new ArrayAdapter<>(this, R.layout.custom_text_view_for_lists, body);
+        ArrayAdapter<BodyWeighIn> bodyAdapter = new ArrayAdapter<>(this, R.layout.custom_text_view_for_lists, day.getBodyWeighIns());
         lvBody.setAdapter(bodyAdapter);
     }
 }
