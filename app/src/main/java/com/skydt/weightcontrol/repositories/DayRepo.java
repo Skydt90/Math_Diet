@@ -235,6 +235,36 @@ public class DayRepo
         }
     }
 
+    public void updateMorningWeight(Day day, Context context)
+    {
+        appDatabase = AppDatabase.getInstance(context);
+
+        try
+        {
+            database = appDatabase.getWritableDatabase();
+
+            String query = "UPDATE " + DBContract.DayEntries.TABLE_NAME +
+                    " SET " + DBContract.DayEntries.MORNING_WEIGHT + " = 0 " +
+                    " WHERE " + DBContract.DayEntries.DAY_ID + " = " + day.getSqlDate() +
+                    " AND " + DBContract.DietEntries.DIET_ID + " = " + day.getDietID();
+
+            cursor = database.rawQuery(query,null,null);
+            cursor.moveToFirst();
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.d(TAG, "deleteMorningWeight: SQLiteException thrown: " + sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "deleteMorningWeight: SQLException thrown: " + sqle);
+        }
+        finally
+        {
+            database.close();
+        }
+    }
+
     public void updateAllowedFoodIntakeBasedOnWeighIn(Day day, double dailyAllowedFoodIntake, Context context)
     {
         appDatabase = AppDatabase.getInstance(context);

@@ -1,20 +1,25 @@
 package com.skydt.weightcontrol.activities;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.models.BodyWeighIn;
 import com.skydt.weightcontrol.models.Day;
+import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.models.FoodWeighIn;
 import com.skydt.weightcontrol.services.BodyWeighInService;
 import com.skydt.weightcontrol.services.ChartService;
@@ -24,7 +29,7 @@ import com.skydt.weightcontrol.services.FoodWeighInService;
 import java.util.List;
 import java.util.Locale;
 
-public class DayActivity extends AppCompatActivity implements View.OnClickListener
+public class DayActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener
 {
     private static final String TAG = "DayActivity";
     private TextView tvDate;
@@ -39,6 +44,7 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
     private FoodWeighInService foodWeighInService;
     private CheckBox cbLikeDay;
     private DayService dayService;
+    private AlertDialog.Builder alertBox;
 
     private int dietID;
     private String dayID;
@@ -72,6 +78,8 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
         cbLikeDay = findViewById(R.id.cbLikeDay);
         Button btnFoodDistribution = findViewById(R.id.btnPieChart);
         btnFoodDistribution.setOnClickListener(this);
+        lvBody.setOnItemLongClickListener(this);
+        lvFood.setOnItemLongClickListener(this);
     }
 
     private void extractIntent()
@@ -147,6 +155,73 @@ public class DayActivity extends AppCompatActivity implements View.OnClickListen
                 break;
         }
         pieChart.invalidate();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id)
+    {
+        Log.d(TAG, "onItemLongClick: called");
+
+        alertBox = new AlertDialog.Builder(this);
+
+        switch (parent.getId())
+        {
+            case R.id.lvBody:
+                final BodyWeighIn bodyWeighIn = (BodyWeighIn) parent.getItemAtPosition(position);
+                alertBox.setMessage("Slet Kropsvejning").setCancelable(false)
+                        .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                BodyWeighInService bodyWeighInService = new BodyWeighInService();
+                                bodyWeighInService.deleteBodyWeighInByID(bodyWeighIn.getBodyWeighInID(), DayActivity.this);
+                                Toast.makeText(DayActivity.this, "Vejning Slettet", Toast.LENGTH_LONG).show();
+                                populateAdapters();
+                            }
+                        })
+                        .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                dialog.cancel();
+                            }
+                        });
+                break;
+            case R.id.lvFood:
+                final FoodWeighIn foodWeighIn = (FoodWeighIn) parent.getItemAtPosition(position);
+                alertBox.setMessage("Slet Madvejning").setCancelable(false)
+                        .setPositiveButton(R.string.ja, new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                FoodWeighInService foodWeighInService = new FoodWeighInService();
+                                foodWeighInService.deleteFoodWeighInByID(foodWeighIn.getFoodWeighInID(), DayActivity.this);
+                                Toast.makeText(DayActivity.this, "Vejning Slettet", Toast.LENGTH_LONG).show();
+                                populateInterface();
+                            }
+                        })
+                        .setNegativeButton(R.string.nej, new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                dialog.cancel();
+                            }
+                        });
+                break;
+            default:
+                break;
+        }
+
+        AlertDialog alertDialog = alertBox.create();
+        alertDialog.setTitle(R.string.advarsel);
+        alertDialog.show();
+
+
+        return true;
     }
 
     public void onCheckboxClicked(View view)

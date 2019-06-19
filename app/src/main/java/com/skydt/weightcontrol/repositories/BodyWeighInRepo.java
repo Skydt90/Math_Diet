@@ -190,4 +190,31 @@ public class BodyWeighInRepo
         }
         return bodyWeighIn;
     }
+
+    public void deleteBodyWeighInByID(int weighInID, Context context)
+    {
+        appDatabase = AppDatabase.getInstance(context);
+        try
+        {
+            database = appDatabase.getWritableDatabase();
+
+            String selection = DBContract.BodyWeightEntries.BODY_ID + " = ?";
+            String[] selectionArgs = {(Integer.toString(weighInID))};
+            int deleteRows = database.delete(DBContract.BodyWeightEntries.TABLE_NAME, selection, selectionArgs);
+
+            Log.d(TAG, "deleteBodyWeighInByID: finished with: " + deleteRows + " deleted rows");
+        }
+        catch(SQLiteException sqle)
+        {
+            Log.d(TAG, "deleteBodyWeighInByID SQLiteException thrown: " + sqle );
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "deleteBodyWeighInByID SQLException thrown: " + sqle);
+        }
+        finally
+        {
+            database.close();
+        }
+    }
 }

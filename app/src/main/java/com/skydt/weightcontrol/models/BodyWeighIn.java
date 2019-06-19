@@ -48,7 +48,7 @@ public class BodyWeighIn
     {
         return bodyWeight;
     }
-
+    public int getBodyWeighInID() { return bodyWeighInID; }
 
     /*
     Setters
