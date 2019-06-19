@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:color="#C390CAF9"
+    android:color="#53C557"
     tools:targetApi="lollipop">
     <item android:id="@android:id/mask">
         <shape android:shape="rectangle">
@@ -10,7 +10,7 @@
     </item>
     <item>
         <shape android:shape="rectangle">
-            <stroke android:width="3px" android:color="#010101" />
+            <stroke android:width="3px" android:color="#FF888888" />
             <corners android:radius="6px"/>
         </shape>
 

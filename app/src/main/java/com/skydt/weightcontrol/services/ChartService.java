@@ -131,7 +131,7 @@ public class ChartService
 
         PieDataSet set = new PieDataSet(entries, "");
 
-        setPieDataSetStyle(set, 13, ColorTemplate.MATERIAL_COLORS);
+        setPieDataSetStyle(set, 13, ColorTemplate.COLORFUL_COLORS);
 
         pieData = new PieData(set);
 
@@ -152,10 +152,24 @@ public class ChartService
     public void setLineChartStyle(LineChart lineChart)
     {
         lineChart.getDescription().setEnabled(false);
-        XAxis xAxis = lineChart.getXAxis();
         YAxis rightYAxis = lineChart.getAxisRight();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         rightYAxis.setEnabled(false);
+        rightYAxis.setDrawLabels(false);
+
+        YAxis yAxis = lineChart.getAxisLeft();
+        yAxis.setDrawGridLines(true);
+        yAxis.setDrawLabels(true);
+
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawLabels(false);
+        xAxis.setDrawGridLines(true);
+        xAxis.setDrawAxisLine(true);
+
+        lineChart.setDrawGridBackground(false);
+        lineChart.setBorderWidth(0.5f);
+        lineChart.setBorderColor(Color.GRAY);
+        lineChart.setDrawBorders(true);
     }
 
     public void setPieDataSetStyle(PieChart pieChart, String centerText)
