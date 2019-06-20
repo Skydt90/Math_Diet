@@ -237,6 +237,60 @@ public class BodyWeighInRepo
         return bodyWeighIn;
     }
 
+    public List<Day> readAllBodyWeighInsFromCompletedDaysInDiet(List<Day> completedDays, Context context)
+    {
+        Log.d(TAG, "readAllBodyWeighInsFromCompletedDaysInDiet: Called");
+
+        appDatabase = AppDatabase.getInstance(context);
+        try
+        {
+            database = appDatabase.getReadableDatabase();
+
+            for (Day day : completedDays)
+            {
+                String query = "SELECT * FROM " + DBContract.BodyWeightEntries.TABLE_NAME
+                        + " WHERE " + DBContract.BodyWeightEntries.DAY_ID + " ="
+                        + " DATE('" + day.getSqlDate() + "') AND " + DBContract.BodyWeightEntries.DIET_ID
+                        + " = " + day.getDietID();
+
+                cursor = database.rawQuery(query, null, null);
+
+                if (cursor != null && cursor.getCount() > 0)
+                {
+                    cursor.moveToFirst();
+                    do
+                    {
+                        BodyWeighIn bodyWeighIn = new BodyWeighIn();
+                        bodyWeighIn.setBodyWeighInID(cursor.getInt(0));
+                        bodyWeighIn.setDayIDByString(cursor.getString(1));
+                        bodyWeighIn.setDietID(cursor.getInt(2));
+                        bodyWeighIn.setBodyWeight(cursor.getDouble(3));
+                        day.getBodyWeighIns().add(bodyWeighIn);
+                    } while (cursor.moveToNext());
+                }
+            }
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.d(TAG, "readAllBodyWeighInsFromCompletedDaysInDiet SQLite exception thrown: " + sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "readAllBodyWeighInsFromCompletedDaysInDiet SQL exception thrown: " + sqle);
+        }
+        finally
+        {
+            database.close();
+            if (cursor != null)
+            {
+                cursor.close();
+            }
+            Log.d(TAG, "readAllBodyWeighInsFromCompletedDaysInDiet: Finished");
+        }
+        return completedDays;
+    }
+
+
     public void deleteBodyWeighInByID(int weighInID, Context context)
     {
         appDatabase = AppDatabase.getInstance(context);

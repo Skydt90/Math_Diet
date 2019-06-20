@@ -87,6 +87,10 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         {
             dietService.setError(etHeight, "Din højde mangler");
         }
+        else if (dietService.toShort(etHeight))
+        {
+            dietService.setError(etHeight, "Indtast gyldig højde");
+        }
         else if (Double.parseDouble(etCurrentWeight.getText().toString()) == 0)
         {
             dietService.setError(etCurrentWeight, "Må ikke være 0");

@@ -21,13 +21,13 @@ import java.util.List;
 
 public class ChartService
 {
-    public LineDataSet getDietWeightRange(Diet diet)
+    public LineDataSet getDietWeightRange(List<Day> days)
     {
         LineDataSet lineDataSet; // contains values to 1 graph
         List<Entry> entries = new ArrayList<>(); // the x, y values of the graph
 
         int x = 1;
-        for (Day day : diet.getDays())
+        for (Day day : days)
         {
             entries.add(new Entry(x, (float)day.getGoalWeight()));
             x ++;
@@ -38,11 +38,12 @@ public class ChartService
         return lineDataSet;
     }
 
-    public LineDataSet getLastWeighInOfDays(List<BodyWeighIn> bodyWeighIns)
+    public LineDataSet getCompletedDaysWeightEntryData(Diet diet)
     {
         LineDataSet lineDataSet;
         List<Entry> entries = new ArrayList<>();
 
+        /* THIS WORKS FINE BUT DOESN'T FIX DAY SKIP ISSUE
         if (!bodyWeighIns.isEmpty())
         {
             int x = 1;
@@ -61,16 +62,11 @@ public class ChartService
                     entries.add(new Entry(x, (float)weight.getBodyWeight()));
                 }
             }
-        }
-        lineDataSet = new LineDataSet(entries, "Aktuel Vægt");
-
-        styleLineDataSet(lineDataSet, true, Color.parseColor("#0000EE"), 1);
-        return lineDataSet;
-        /* IDEA FOR BUG FIX. WOULD REQUIRE MAJOR DB JOIN CALL TO WORK THO
-        NEEDS A DIET OBJECT WITH A LIST OF COMPLETED DAYS, AND EACH DAY HAS TO HAVE BDYWEIGHIN LISTS SET
-
-        double currentWeight = diet.getStartWeight();
+        }*/
+        /* IDEA IMPL FOR DAY SKIP BUG FIX. NEEDS TESTING!
+        TAKES A DIET OBJECT WITH A LIST OF COMPLETED DAYS, AND EACH DAY HAS TO HAVE DATA IN ITS BODYWEIGHIN LIST*/
         int x = 1;
+        double currentWeight = diet.getStartWeight();
 
         for (Day day: diet.getDays())
         {
@@ -85,10 +81,12 @@ public class ChartService
             else
             {
                 entries.add(new Entry(x, (float)currentWeight));
-                x++;
             }
+            x++;
         }
-         */
+        lineDataSet = new LineDataSet(entries, "Aktuel Vægt");
+        styleLineDataSet(lineDataSet, false, Color.parseColor("#0000EE"), 1);
+        return lineDataSet;
     }
 
     public PieData getFoodDistribution(Day day)

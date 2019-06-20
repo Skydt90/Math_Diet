@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.skydt.weightcontrol.R;
-import com.skydt.weightcontrol.models.BodyWeighIn;
 import com.skydt.weightcontrol.models.Day;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.services.BodyWeighInService;
@@ -31,7 +29,6 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private static final String TAG = "MainMenuActivity";
     private Button btnGoToDay;
     private Button btnBodyWeighIn;
     private Button btnFood;
@@ -48,6 +45,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private Day day;
     private Diet diet;
     private DietService dietService;
+    private DayService dayService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -105,15 +103,15 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void populateInterface()
     {
+        dayService = new DayService();
         dietService = new DietService();
-        DayService dayService = new DayService();
         BodyWeighInService bodyWeighInService = new BodyWeighInService();
+        String currentDate = dayService.getCurrentDateAsString();
 
         diet = dietService.loadDietByID(dietID, this);
-        diet.setDays(dayService.loadAllDaysFromDiet(diet.getDietID(), this));
-
+        diet.setDays(dayService.loadAllCompletedDaysFromDiet((diet.getDietID()), currentDate, this));
+        diet.setDays(bodyWeighInService.readAllBodyWeighInsFromCompletedDaysInDiet(diet.getDays(), this));
         day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
-        day.setBodyWeighIns(bodyWeighInService.readAllBodyWeighInsFromDiet(day, this));
 
         tvCurrentDiet.setText(diet.getDietName());
         if (day.getDayID() != null)
@@ -136,7 +134,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         {
             hideBtnAndAdjustText();
         }
-        if (dietService.getDietProgress(dayService.loadAllCompletedDaysFromDiet(diet.getDietID(), dayService.getCurrentDateAsString(),this)) == 0)
+        if (dietService.getDietProgress(diet.getDays()) == 0)
         {
             dayZero();
         }
@@ -213,12 +211,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     {
         ChartService chartService = new ChartService();
         List<ILineDataSet> iLineDataSets = new ArrayList<>();   // Contains multiple LineDataSets
-
-        iLineDataSets.add(chartService.getDietWeightRange(diet));
-        iLineDataSets.add(chartService.getLastWeighInOfDays(day.getBodyWeighIns())); // Add weight plots to chart
-
+        iLineDataSets.add(chartService.getDietWeightRange(dayService.loadAllDaysFromDiet(diet.getDietID(), this)));
+        iLineDataSets.add(chartService.getCompletedDaysWeightEntryData(diet)); // Add weight plots to chart
         chartService.setLineChartStyle(lineChart); // style chart
-
         LineData lineData = new LineData(iLineDataSets); // molds the data
         lineChart.setData(lineData);    // display the data in graph
     }
