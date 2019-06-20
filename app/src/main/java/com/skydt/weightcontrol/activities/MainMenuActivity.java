@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.skydt.weightcontrol.R;
+import com.skydt.weightcontrol.models.BodyWeighIn;
 import com.skydt.weightcontrol.models.Day;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.services.BodyWeighInService;
@@ -29,6 +31,7 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
+    private static final String TAG = "MainMenuActivity";
     private Button btnGoToDay;
     private Button btnBodyWeighIn;
     private Button btnFood;
@@ -110,7 +113,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         diet.setDays(dayService.loadAllDaysFromDiet(diet.getDietID(), this));
 
         day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
-        day.setBodyWeighIns(bodyWeighInService.readLastBodyWeighInFromCompletedDaysInDiet(diet.getDays(), this));
+        day.setBodyWeighIns(bodyWeighInService.readAllBodyWeighInsFromDiet(day, this));
 
         tvCurrentDiet.setText(diet.getDietName());
         if (day.getDayID() != null)
@@ -133,7 +136,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         {
             hideBtnAndAdjustText();
         }
-        if (dietService.getDietProgress(diet) == 0)
+        if (dietService.getDietProgress(dayService.loadAllCompletedDaysFromDiet(diet.getDietID(), dayService.getCurrentDateAsString(),this)) == 0)
         {
             dayZero();
         }

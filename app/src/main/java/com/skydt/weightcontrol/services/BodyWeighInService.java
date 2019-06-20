@@ -35,6 +35,12 @@ public class BodyWeighInService
         return bodyWeighInRepo.readAllBodyWeighInsFromDay(day, context);
     }
 
+    public List<BodyWeighIn> readAllBodyWeighInsFromDiet(Day day, Context context)
+    {
+        Log.d(TAG, "readAllBodyWeighInsFromDiet: Called");
+        return bodyWeighInRepo.readAllBodyWeighInsFromDiet(day, context);
+    }
+
     public List<BodyWeighIn> readLastBodyWeighInFromCompletedDaysInDiet(List<Day> completedDays, Context context)
     {
         Log.d(TAG, "readLastBodyWeighInFromCompletedDaysInDiet: Called");

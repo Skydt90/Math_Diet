@@ -44,20 +44,28 @@ public class ChartService
         LineDataSet lineDataSet;
         List<Entry> entries = new ArrayList<>();
 
-        /*
-        if (bodyWeighIns.size() > 0)
+        if (!bodyWeighIns.isEmpty())
         {
-            bodyWeighIns.remove(0);  // Remove first, since it's not technically part of the diet
-        } */
+            int x = 1;
+            String currentDate = bodyWeighIns.get(0).getSQLDate();
 
-        for (int i = 0; i < bodyWeighIns.size(); i ++)
-        {
-            entries.add(new Entry(i + 1, (float)bodyWeighIns.get(i).getBodyWeight()));
+            for (BodyWeighIn weight: bodyWeighIns)
+            {
+                if (weight.getSQLDate().equals(currentDate))
+                {
+                    entries.add(new Entry(x, (float)weight.getBodyWeight()));
+                }
+                else
+                {
+                    x++;
+                    currentDate = weight.getSQLDate();
+                    entries.add(new Entry(x, (float)weight.getBodyWeight()));
+                }
+            }
         }
-
         lineDataSet = new LineDataSet(entries, "Aktuel Vægt");
 
-        styleLineDataSet(lineDataSet, false, Color.parseColor("#0000EE"), 1.5f);
+        styleLineDataSet(lineDataSet, true, Color.parseColor("#0000EE"), 1);
         return lineDataSet;
     }
 

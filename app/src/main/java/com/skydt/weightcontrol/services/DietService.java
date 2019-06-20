@@ -84,9 +84,9 @@ public class DietService
         return (startWeight - desiredWeight) / daysInDiet;
     }
 
-    public int getDietProgress(Diet diet)
+    public int getDietProgress(List<Day> days)
     {
-        return diet.getDays().size() - 1;
+        return days.size() - 1;
     }
 
     public String calculateDietProgress(Diet diet)

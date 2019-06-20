@@ -32,7 +32,7 @@ public class BodyWeighInRepo
             database = appDatabase.getWritableDatabase();
             ContentValues values = new ContentValues();
 
-            values.put(DBContract.BodyWeightEntries.DAY_ID, bodyWeighIn.getSQLDayID());
+            values.put(DBContract.BodyWeightEntries.DAY_ID, bodyWeighIn.getSQLDate());
             values.put(DBContract.FoodWeightEntries.DIET_ID, bodyWeighIn.getDietID());
             values.put(DBContract.BodyWeightEntries.WEIGHT, bodyWeighIn.getBodyWeight());
 
@@ -94,6 +94,52 @@ public class BodyWeighInRepo
             database.close();
             cursor.close();
             Log.d(TAG, "readAllBodyWeighInsFromDay: Finished");
+        }
+        return bodyWeighIns;
+    }
+
+    public List<BodyWeighIn> readAllBodyWeighInsFromDiet(Day day, Context context)
+    {
+        Log.d(TAG, "readAllBodyWeighInsFromDiet: Called");
+        List<BodyWeighIn> bodyWeighIns = new ArrayList<>();
+
+        appDatabase = AppDatabase.getInstance(context);
+        try
+        {
+            database = appDatabase.getReadableDatabase();
+
+            String query = "SELECT * FROM " + DBContract.BodyWeightEntries.TABLE_NAME + " WHERE "
+                    + DBContract.BodyWeightEntries.DIET_ID + " = " + day.getDietID();
+            cursor = database.rawQuery(query, null, null);
+
+            if (cursor != null)
+            {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast())
+                {
+                    BodyWeighIn bodyWeighIn = new BodyWeighIn();
+                    bodyWeighIn.setBodyWeighInID(cursor.getInt(0));
+                    bodyWeighIn.setDayIDByString(cursor.getString(1));
+                    bodyWeighIn.setDietID(cursor.getInt(2));
+                    bodyWeighIn.setBodyWeight(cursor.getDouble(3));
+                    bodyWeighIns.add(bodyWeighIn);
+                    cursor.moveToNext();
+                }
+            }
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.d(TAG, "readAllBodyWeighInsFromDiet SQLite exception thrown: " + sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "readAllBodyWeighInsFromDiet SQL exception thrown: " + sqle);
+        }
+        finally
+        {
+            database.close();
+            cursor.close();
+            Log.d(TAG, "readAllBodyWeighInsFromDiet: Finished");
         }
         return bodyWeighIns;
     }
