@@ -16,7 +16,6 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.skydt.weightcontrol.R;
-import com.skydt.weightcontrol.models.BodyWeighIn;
 import com.skydt.weightcontrol.models.Day;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.services.BodyWeighInService;
@@ -45,8 +44,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private int dietID;
     private Day day;
     private Diet diet;
-
-    private DayService dayService;
     private DietService dietService;
 
     @Override
@@ -106,17 +103,18 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private void populateInterface()
     {
         dietService = new DietService();
+        DayService dayService = new DayService();
         BodyWeighInService bodyWeighInService = new BodyWeighInService();
-        dayService = new DayService();
-        day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
+
         diet = dietService.loadDietByID(dietID, this);
+        diet.setDays(dayService.loadAllCompletedDaysFromDiet(diet.getDietID(), dayService.getCurrentDateAsString(), this));
+
+        day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
+        day.setBodyWeighIns(bodyWeighInService.readLastBodyWeighInFromCompletedDaysInDiet(diet.getDays(), this));
 
         tvCurrentDiet.setText(diet.getDietName());
-
         if (day.getDayID() != null)
         {
-            if (dietService.getDietProgress(diet) == 0)
-            {}
             tvDate.setText(day.getDateAsDanishDisplayText());
             tvGoalWeight.setText(String.format(Locale.getDefault(), "%.1f", day.getGoalWeight()));
             tvGoalWeight.append(" kg");
@@ -135,6 +133,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         {
             hideBtnAndAdjustText();
         }
+        if (dietService.getDietProgress(diet) == 0)
+        {
+            dayZero();
+        }
         setChartData();
     }
 
@@ -144,6 +146,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvAllowedFood.setTextColor(Color.GRAY);
         tvBMI.setTextColor(Color.GRAY);
         tvDate.setTextColor(Color.GRAY);
+        tvGoalWeight.setTextColor(Color.GRAY);
         btnBodyWeighIn.setText(R.string.krop);
 
         btnFood.setClickable(true);
@@ -206,20 +209,28 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private void setChartData()
     {
         ChartService chartService = new ChartService();
-        BodyWeighInService bodyWeighInService = new BodyWeighInService();
         List<ILineDataSet> iLineDataSets = new ArrayList<>();   // Contains multiple LineDataSets
-        String currentDate = dayService.getCurrentDateAsString();
-
-        List<Day> completedDays = dayService.loadAllCompletedDaysFromDiet(dietID, currentDate, this);
-        List<BodyWeighIn> bodyWeighIns = bodyWeighInService.readLastBodyWeighInFromCompletedDaysInDiet(completedDays, this);
 
         iLineDataSets.add(chartService.getDietWeightRange(diet));
-        iLineDataSets.add(chartService.getLastWeighInOfDays(bodyWeighIns)); // Add weight plots to chart
+        iLineDataSets.add(chartService.getLastWeighInOfDays(day.getBodyWeighIns())); // Add weight plots to chart
 
         chartService.setLineChartStyle(lineChart); // style chart
 
         LineData lineData = new LineData(iLineDataSets); // molds the data
         lineChart.setData(lineData);    // display the data in graph
+    }
+
+    private void dayZero()
+    {
+        tvDate.setText(R.string.Dag01);
+        tvDate.setTextColor(Color.parseColor("#53C557"));
+        tvGoalWeight.setText(R.string.Dag02);
+        tvGoalWeight.setTextColor(Color.parseColor("#53C557"));
+        tvMorningWeight.setText(R.string.error);
+        tvAllowedFood.setText(R.string.error);
+        tvBMI.setText(R.string.error);
+        btnBodyWeighIn.setClickable(false);
+        btnBodyWeighIn.setAlpha(0.2f);
     }
 
     @Override

@@ -6,6 +6,9 @@
     <string name="krop">Krop</string>
     <string name="done">Diæt Afsluttet</string>
 
+    <string name="Dag01">Dette er dag 0</string>
+    <string name="Dag02">Diæten begynder i morgen</string>
+
     <string name="app_name">Vægtkontrol</string>
     <string name="opret_diæt">Opret ny diæt</string>
     <string name="diæt_info">Diæt information</string>
