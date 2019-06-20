@@ -32,7 +32,6 @@ public class ChartService
             entries.add(new Entry(x, (float)day.getGoalWeight()));
             x ++;
         }
-
         lineDataSet = new LineDataSet(entries, "Målvægt");
 
         styleLineDataSet(lineDataSet, false, Color.parseColor("#ff3300"), 1);
@@ -67,6 +66,29 @@ public class ChartService
 
         styleLineDataSet(lineDataSet, true, Color.parseColor("#0000EE"), 1);
         return lineDataSet;
+        /* IDEA FOR BUG FIX. WOULD REQUIRE MAJOR DB JOIN CALL TO WORK THO
+        NEEDS A DIET OBJECT WITH A LIST OF COMPLETED DAYS, AND EACH DAY HAS TO HAVE BDYWEIGHIN LISTS SET
+
+        double currentWeight = diet.getStartWeight();
+        int x = 1;
+
+        for (Day day: diet.getDays())
+        {
+            if (!day.getBodyWeighIns().isEmpty())
+            {
+                for (BodyWeighIn bodyWeighIn: day.getBodyWeighIns())
+                {
+                    entries.add(new Entry(x, (float)bodyWeighIn.getBodyWeight()));
+                    currentWeight = bodyWeighIn.getBodyWeight();
+                }
+            }
+            else
+            {
+                entries.add(new Entry(x, (float)currentWeight));
+                x++;
+            }
+        }
+         */
     }
 
     public PieData getFoodDistribution(Day day)
