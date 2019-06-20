@@ -77,7 +77,11 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         }
         else if (dietService.isEmpty(etDays))
         {
-            dietService.setError(etDays, "Dietens længde påkrævet");
+            dietService.setError(etDays, "Antal dage påkrævet");
+        }
+        else if (Integer.parseInt(etDays.getText().toString()) == 0)
+        {
+            dietService.setError(etDays, "Skal være over 0");
         }
         else if (dietService.isEmpty(etHeight))
         {

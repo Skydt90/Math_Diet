@@ -44,6 +44,11 @@ public class DayService
         return dayRepo.loadAllCompletedDaysFromDiet(dietID, currentDate, context);
     }
 
+    public List<Day> loadAllDaysFromDiet(int dietID, Context context)
+    {
+        return dayRepo.loadAllDaysFromDiet(dietID, context);
+    }
+
     public Day loadDayByPrimaryKey(String dayID, int dietID, Context context)
     {
         Log.d(TAG, "loadDayByPrimaryKey: Called");

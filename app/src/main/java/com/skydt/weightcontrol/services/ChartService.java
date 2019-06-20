@@ -26,8 +26,12 @@ public class ChartService
         LineDataSet lineDataSet; // contains values to 1 graph
         List<Entry> entries = new ArrayList<>(); // the x, y values of the graph
 
-        entries.add(new Entry(1,(int)diet.getStartWeight())); // day one
-        entries.add(new Entry(diet.getNumberOfDays(), (int)diet.getDesiredWeight())); // Last day
+        int x = 1;
+        for (Day day : diet.getDays())
+        {
+            entries.add(new Entry(x, (float)day.getGoalWeight()));
+            x ++;
+        }
 
         lineDataSet = new LineDataSet(entries, "Målvægt");
 
@@ -40,14 +44,15 @@ public class ChartService
         LineDataSet lineDataSet;
         List<Entry> entries = new ArrayList<>();
 
+        /*
         if (bodyWeighIns.size() > 0)
         {
             bodyWeighIns.remove(0);  // Remove first, since it's not technically part of the diet
-        }
+        } */
 
         for (int i = 0; i < bodyWeighIns.size(); i ++)
         {
-            entries.add(new Entry((float)i + 1, (float)bodyWeighIns.get(i).getBodyWeight()));
+            entries.add(new Entry(i + 1, (float)bodyWeighIns.get(i).getBodyWeight()));
         }
 
         lineDataSet = new LineDataSet(entries, "Aktuel Vægt");

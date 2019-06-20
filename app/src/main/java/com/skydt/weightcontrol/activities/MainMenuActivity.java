@@ -107,7 +107,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         BodyWeighInService bodyWeighInService = new BodyWeighInService();
 
         diet = dietService.loadDietByID(dietID, this);
-        diet.setDays(dayService.loadAllCompletedDaysFromDiet(diet.getDietID(), dayService.getCurrentDateAsString(), this));
+        diet.setDays(dayService.loadAllDaysFromDiet(diet.getDietID(), this));
 
         day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
         day.setBodyWeighIns(bodyWeighInService.readLastBodyWeighInFromCompletedDaysInDiet(diet.getDays(), this));
