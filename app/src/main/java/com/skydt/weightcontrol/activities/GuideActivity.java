@@ -64,6 +64,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             case 1:
                 tvHeadline.setText(this.getResources().getText(R.string.guide_intro_head));
                 tvInformation.setText(this.getResources().getText(R.string.guide_intro_text));
+                tvInformation.scrollTo(0, 0);
                 tvBarProgressNum.setText(String.format(pageProgress, pageNumber, progressBar.getMax()));
                 progressBar.setProgress(pageNumber);
                 btnImage.setClickable(false);
@@ -74,6 +75,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             case 2:
                 tvHeadline.setText(this.getResources().getText(R.string.guide_diet_create_head));
                 tvInformation.setText(this.getResources().getText(R.string.guide_diet_create_text));
+                tvInformation.scrollTo(0, 0);
                 tvBarProgressNum.setText(String.format(pageProgress, pageNumber, progressBar.getMax()));
                 progressBar.setProgress(pageNumber);
                 btnPrevious.setClickable(true);
