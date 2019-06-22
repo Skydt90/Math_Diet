@@ -16,6 +16,7 @@
     <string name="vælg_diæt">Vælg en diæt</string>
     <string name="indtast_vægt">Indtast vægt</string>
     <string name="guide">Vejledning</string>
+    <string name="information">Information</string>
 
     <string name="aktuel_madfordeling">Aktuel</string>
     <string name="anbefalet_madfordeling">Anbefalet</string>
@@ -31,7 +32,8 @@
 
     <string name="guide_intro_head"><b><font color="black">Introduktion til vejledningen:</font></b></string>
     <string name="guide_intro_text">De følgende sider vil give en detaljeret beskrivelse af samtlige sektioner i denne app. Hver side vil starte med at introducere sektionen, efterfulgt af en beskrivelse af alle dens relevante felter, data og funktioner. Du kan frit navigere frem eller tilbage imellem siderne vha knapperne nedenfor. Det er også muligt at få vist et billede af de omtalte sektioner, ved at klikke på det lille billede nederst til højre.
-    \n\n<font color="black">Bemærk!</font>\nUanset hvad denne app viser af data eller resultater, så benyt den kun vejledende og med sund fornuft. Har du minus gram en dag, så lad vær med ikke at spise noget, men spis i stedet sparsomt, sundt og varieret. Kommer du alt for langt bagud, så slet din diæt og lav en ny. Alle rammer en til flere stopklodser under et vægttabsforløb og det gælder også ved brugen af denne metode.\n\nDer gives ingen garanti for vægttab ved brug af denne app!
+        \n\n<font color="black">Persondata:</font>\nDenne app hverken gemmer, eller deler nogen form for personfølsom data. Alt data du registrerer gemmes kun lokalt på din egen enhed og kan ikke tilgås andre steder fra.
+        \n\n<font color="black">Bemærk!</font>\nUanset hvad denne app viser af data eller resultater, så benyt den kun vejledende og med sund fornuft. Har du minus gram en dag, så lad vær med ikke at spise noget, men spis i stedet sparsomt, sundt og varieret. Kommer du alt for langt bagud, så slet din diæt og lav en ny. Alle rammer en til flere stopklodser under et vægttabsforløb og det gælder også ved brugen af denne metode.\n\nDer gives ingen garanti for vægttab ved brug af denne app!
     </string>
 
     <string name="welcome">Denne app er designet til at simplificere brugen af den nye vægttabsmetode, matematisk vægttab, der er udviklet af professor Jakob Stoustrup. Såfremt du ikke er bekendt med metoden anbefaler vi du først læser op på den, ved at følge linket nedenfor, da det er utrolig vigtigt at vide hvordan den virker før man går igang!
@@ -94,6 +96,21 @@
     </string>
     <string name="guide_diet_select_head"><b><font color="black">Sektion:</font></b> Skift diæt</string>
     <string name="guide_diet_select_text">Fra denne sektion kan du skifte til en anden diæt eller danne et overblik over alle diæterne på din telefon. Det er også muligt at slette alt ved at trykke på det røde kryds øverst til højre, eller blot slette en enkelt diæt ved at trykke på en og holde fingeren nede et sekunds tid. Vær opmærksom på det er ikke muligt at få genskabt det data du sletter!
+    </string>
+
+    <string name="developers"><b>Udvikling, design og programmering:</b>
+        \n\n<i>Christian Grye Skydt</i>\n<i>Niels Mærkedahl Justesen</i>
+    </string>
+    <string name="method_by"><b>\nMatematisk vægttab:</b>
+        \n\n<i>Jakob Stoustrup</i>
+        \n<i><a href="https://weightctrlblog.wordpress.com/">WeightControl blog</a></i>
+    </string>
+    <string name="license"><b>\nBruger betingelser:</b>
+        \n\n<i>Image: <a href="https://icon-icons.com/icon/fruit-apple-food/1314">Apple</a> By: <a href="https://www.deviantart.com/bingxueling">Bingxueling</a>
+            \nEr licenseret under en: <a href="http://creativecommons.org/licenses/by/4.0/">\nCreative Commons Kreditering 4.0 International Licens</a>.</i>
+    </string>
+    <string name="build_info"><b>\nVægtkontrol App:</b>
+        \n\nVersion Number:
     </string>
 </resources>
 

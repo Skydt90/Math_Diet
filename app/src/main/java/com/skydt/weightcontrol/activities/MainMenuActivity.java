@@ -300,6 +300,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
 
+            case R.id.mnuInformation:
+                intent = new Intent(this, InformationActivity.class);
+                startActivity(intent);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
