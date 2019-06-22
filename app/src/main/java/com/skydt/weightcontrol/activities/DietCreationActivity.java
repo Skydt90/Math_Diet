@@ -22,7 +22,7 @@ import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.services.DayService;
 import com.skydt.weightcontrol.services.DietService;
-import com.skydt.weightcontrol.services.PopupService;
+import com.skydt.weightcontrol.services.TextPopupService;
 
 import java.util.Locale;
 
@@ -39,7 +39,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
     private DayService dayService;
     private int dietID;
     private boolean welcome;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -90,7 +90,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         {
             dietService.setError(etDays, "Antal dage påkrævet");
         }
-        else if (Integer.parseInt(etDays.getText().toString()) == 0)
+        else if (Integer.parseInt(etDays.getText().toString()) <= 0)
         {
             dietService.setError(etDays, "Skal være over 0");
         }
@@ -98,15 +98,15 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         {
             dietService.setError(etHeight, "Din højde mangler");
         }
-        else if (dietService.toShort(etHeight))
+        else if (dietService.tooShort(etHeight))
         {
             dietService.setError(etHeight, "Indtast gyldig højde");
         }
-        else if (Double.parseDouble(etCurrentWeight.getText().toString()) == 0)
+        else if (Double.parseDouble(etCurrentWeight.getText().toString()) <= 0)
         {
             dietService.setError(etCurrentWeight, "Må ikke være 0");
         }
-        else if (Double.parseDouble(etDesiredWeight.getText().toString()) == 0)
+        else if (Double.parseDouble(etDesiredWeight.getText().toString()) <= 0)
         {
             dietService.setError(etDesiredWeight, "Må ikke være 0");
         }
@@ -216,7 +216,7 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
 
     private void showWelcome()
     {
-        PopupService popupService = new PopupService(findViewById(android.R.id.content), this, sharedPreferences);
+        TextPopupService popupService = new TextPopupService(findViewById(android.R.id.content), this, sharedPreferences);
         DisplayMetrics displayMetrics = new DisplayMetrics();
 
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -229,11 +229,10 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
     public void onAttachedToWindow()
     {
         super.onAttachedToWindow();
-        if (welcome == welcome)
+        if (welcome)
         {
             showWelcome();
         }
-        showWelcome();
     }
 
     private class CreateDiet extends AsyncTask<Void, Void, Void>

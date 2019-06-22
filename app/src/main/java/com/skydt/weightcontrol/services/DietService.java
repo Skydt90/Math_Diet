@@ -161,7 +161,7 @@ public class DietService
         return input.length() == 0;
     }
 
-    public boolean toShort(EditText editText)
+    public boolean tooShort(EditText editText)
     {
         String input = editText.getText().toString().trim();
         return input.length() < 3;

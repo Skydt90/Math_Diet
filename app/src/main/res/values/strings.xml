@@ -15,7 +15,7 @@
     <string name="dag_info">Dags information</string>
     <string name="vælg_diæt">Vælg en diæt</string>
     <string name="indtast_vægt">Indtast vægt</string>
-    <string name="information">Information</string>
+    <string name="guide">Vejledning</string>
 
     <string name="aktuel_madfordeling">Aktuel</string>
     <string name="anbefalet_madfordeling">Anbefalet</string>
@@ -29,14 +29,71 @@
     <string name="ja">Ja</string>
     <string name="nej">Nej</string>
 
-    <string name="introduction">Denne app er designet til at simplificere brugen af den nye vægttabsmetode, matematisk vægttab, der er udviklet af professor Jakob Stoustrup. Såfremt du ikke er bekendt med metoden anbefaler vi du først læser op på den, ved at følge linket nedenfor, da det er utrolig vigtigt at vide hvordan den virker før man går igang!
+    <string name="guide_intro_head"><b><font color="black">Introduktion til vejledningen:</font></b></string>
+    <string name="guide_intro_text">De følgende sider vil give en detaljeret beskrivelse af samtlige sektioner i denne app. Hver side vil starte med at introducere sektionen, efterfulgt af en beskrivelse af alle dens relevante felter, data og funktioner. Du kan frit navigere frem eller tilbage imellem siderne vha knapperne nedenfor. Det er også muligt at få vist et billede af de omtalte sektioner, ved at klikke på det lille billede nederst til højre.
+    \n\n<font color="black">Bemærk!</font>\nUanset hvad denne app viser af data eller resultater, så benyt den kun vejledende og med sund fornuft. Har du minus gram en dag, så lad vær med ikke at spise noget, men spis i stedet sparsomt, sundt og varieret. Kommer du alt for langt bagud, så slet din diæt og lav en ny. Alle rammer en til flere stopklodser under et vægttabsforløb og det gælder også ved brugen af denne metode.\n\nDer gives ingen garanti for vægttab ved brug af denne app!
+    </string>
+
+    <string name="welcome">Denne app er designet til at simplificere brugen af den nye vægttabsmetode, matematisk vægttab, der er udviklet af professor Jakob Stoustrup. Såfremt du ikke er bekendt med metoden anbefaler vi du først læser op på den, ved at følge linket nedenfor, da det er utrolig vigtigt at vide hvordan den virker før man går igang!
         \n\n<a href="https://weightctrlblog.wordpress.com/">WeightControl blog</a>
         \n\nAppen indeholder funktioner der, forhåbentligt, vil være en stor hjælp til at trivialisere de mest frustrerende elementer ved metoden, såsom daglig udregning af målvægt eller resterende mængde af mad for blot at nævne nogle få.
         \nDertil er bygget nogle quality of life elementer ind, som bidrager til at gøre dit vægttabsforløb lidt sjovere. Eksempelvis kan du se et diagram over dit fremskridt, hvor mange gram du har indtaget i løbet af dagen, slette eventuelle forkerte indtastninger, eller like en dag.
         \n\nEr det første gang du benytter appen, anbefaler vi at læse vejledningen først. Vil du hellere bare igang, er det også muligt. Skulle der alligevel opstå forvirring senere kan den findes frem vha menuen.
         \n\nTusind tak fordi du benytter vores app!
-</string>
+    </string>
 
-
+    <string name="guide_diet_create_head"><b><font color="black">Sektion:</font></b> Opret ny diæt</string>
+    <string name="guide_diet_create_text">Dette er sektionen hvor du opretter dine diæter. En diæt er essentielt bare en oversigt over hele dit vægttabsforløb. Alle fremtidige udregninger appen laver, sker på baggrund af de registreringer, du foretager her.
+        \n\n<font color="black">Navn på diæt:</font>\nHer indtastes det ønskede navn på diæten.
+        \n\n<font color="black">Nuværende vægt:</font>\nDin nuværende vægt, første aften, efter sidste måltid.
+        \n\n<font color="black">Ønskede vægt:</font>\nDin ønskede vægt, efter diæten er afsluttet.
+        \n\n<font color="black">Antal dage:</font>\nHvor mange dage du vil bruge på at opnå den nye vægt. Flere dage betyder et lavere vægttab per dag og omvendt. Vær opmærksom på at appen ikke tillader urealistisk høje vægttab per dag.
+        \n\n<font color="black">Højde:</font>\nHøjden benyttes til at udregne din BMI, der vil justere sig i relation til din vægt.
+        \n\n<font color="black">Bemærk!</font>\nDet er også muligt at lave en diæt, der hjælper dig med at vedligeholde- eller øge din vægt.
+    </string>
+    <string name="guide_main_menu_head"><b><font color="black">Sektion:</font></b> Hovedmenu</string>
+    <string name="guide_main_menu_text">Denne sektion giver dig et dynamisk nutidsbillede af den aktuelle dag på din diæt. Dertil fungerer den som et centralt udgangspunkt for resten af appen, da det er herfra du kan navigere til andre sektioner vha menuen eller knapperne.
+        \n\n<font color="black">Navn på diæt:</font>\nNavnet på den aktive nuværende diæt.
+        \n\n<font color="black">Dato:</font>\nDags dato.
+        \n\n<font color="black">Målvægt:</font>\nMålvæten er den maksimale vægt du må opnå på denne dag. Denne justeres afhængigt af det udregnede daglige vægttab en gang i døgnet.
+        \n\n<font color="black">Morgenvægt:</font>\nHer vises den morgenvægt du har registreret på den aktuelle dag. Har du ikke indtastet en morgenvægt, vil feltet lyse rødt og bede dig indtaste den.
+        \n\n<font color="black">Resterende mad:</font>\nHer vises den tilladte mængde af mad du har tilbage at spise på dagen i gram. Denne værdi er som udgangspunkt beregnet som differencen mellem din mål- og morgenvægt. Herefter justeres den dynamisk hver gang du indtaster en ny krops- eller madvejning.
+        \n\n<font color="black">BMI:</font>\nDette felt viser din nuværende BMI baseret på din seneste kropsvejning.
+        \n\n<font color="black">"Gå til" knapper:</font>\nBenyttes til at navigere til endten diæt- eller dagsinformation for den aktive diæt eller nuværende dag.
+        \n\n<font color="black">"Indtast vejninger" knapper:</font>\nBenyttes til at navigere til endten krops- eller madvejnings siderne. Hvis du ikke har indtastet en morgenvægt, vil du appen anmode dig om at gøre det.
+        \n\n<font color="black">Menu, øverst til højre:</font>\nHerfra kan du oprette nye diæter, skifte til andre diæter, gå til vejledning eller om.
+    </string>
+    <string name="guide_diet_activity_head"><b><font color="black">Sektion:</font></b> Diæt information</string>
+    <string name="guide_diet_activity_text">Denne sektion giver dig et overblik over din nuværende diæt. Herfra kan du danne indtryk af dit fremskridt, navigere til tidligere dage eller få genopfrisket de registreringer du lavede, da diæten blev oprettet. Det er ikke muligt at redigere i nogle af disse værdier.
+        \n\n<font color="black">Navn:</font>\nNavnet på den aktive diæt.
+        \n\n<font color="black">Periode:</font>\nStart og slutdato på diæten.
+        \n\n<font color="black">Startvægt:</font>\nDin vægt da diæten startede.
+        \n\n<font color="black">Ønskede vægt:</font>\nDin ønskede vægt, efter diæten er afsluttet.
+        \n\n<font color="black">Dagligt vægttab:</font>\nDet daglige vægttab er den mængde din daglige målvægt reguleres efter. Denne værdi er beregnet på baggrund af: (startvægt - ønskede vægt) / antal dage.
+        \n\n<font color="black">Fremskridt:</font>\nDette felt viser dit samlede fremskridt i dage og % på den nuværende diæt.
+        \n\n<font color="black">Samlet vægttab:</font>\nDette felt viser dit samlede vægttab på diæten og beregnes som differencen af din seneste morgenvægt i relation til diætens startvægt.
+        \n\n<font color="black">Dagsoversigt:</font>\nHer vises en tabel over alle overståede dage på diæten samt deres målvægt. Man kan gå til en bestemt dag ved at trykke på den. På den måde er det muligt at gå tilbage og kigge på andre dage end den aktuelle. Har du liket en dag vil den blive oplyst med grøn farve.
+    </string>
+    <string name="guide_day_activity_head"><b><font color="black">Sektion:</font></b> Dags information</string>
+    <string name="guide_day_activity_text">Denne sektion giver dig et overblik over den nuværende eller en tidligere dag på diæten. Herfra kan du se hvorledes dine indtagede gram har fordelt sig på de forskellige måltider, samt en anbefalet fordeling af de tilgængelige gram. Det er muligt at slette krops- og madvejninger herinde, men kun på dags dato.
+        \n\n<font color="black">Dato:</font>\nDatoen på den valgte dag, som vises.
+        \n\n<font color="black">Målvægt:</font>\nDen maksimale vægt, der måtte opnås på denne dag.
+        \n\n<font color="black">Morgenvægt:</font>\nDen morgenvægt du har indtastet på dagen.
+        \n\n<font color="black">Tilladt mad:</font>\nDen totale mængde af tilladt mad på denne dag beregnet som differencen mellem målvægt og morgenvægt. Denne værdi er konstant og justeres ikke på baggrund af nye krops- og madvejninger. Du må altid, som minimum, spise denne mængde af mad hver dag!
+        \n\n<font color="black">Indtaget mad:</font>\nDen totale mængde af mad indtaget på denne dag. Beregnes som summen af alle dagens madvejninger og justeres således hvis vejninger slettes eller tilføjes. Bemærk at denne værdi godt kan overstige feltet tilladt mad, men det er ikke ulovligt. Du kan jo have fået mere at spise for i løbet af dagen.
+        \n\n<font color="black">Like dagen?</font>\nHer har du mulighed for at like dagen, hvis du synes den var god af den ene eller anden grund. En liket dag vil fremstå med grøn tekst under diæt informationens dagsoversigt.
+        \n\n<font color="black">Madfordeling i gram:</font>\nDette felt viser et cirkeldiagram over hvordan dine indtagede gram er fordelt ud på dagens forskellige måltider. Har du intet spist vil diagrammet være tomt. Det er også muligt at se en anbefaling af hvordan du kan fordele dagens tilgængelige gram. Denne anbefaling er blot vejledende!
+        \n\n<font color="black">Kropsvejninger:</font>\nDette er en tabel over alle dine indtastede kropsvejninger i løbet af dagen, hvor seneste indtastning er øverst. Det er muligt at slette den seneste kropsvejning ved at trykke på den og holde nede i et sekunds tid. Vær opmærksom på at du vil blive bedt om at indtaste din morgenvægt igen, hvis du sletter alt herfra.
+        \n\n<font color="black">Madvejninger:</font>\nDenne er identisk med førnævnte tabel, men viser i stedet alle dine madvejninger for dagen. Også her er det muligt at slette eventuelle fejlindtastninger.
+    </string>
+    <string name="guide_weigh_body_head"><b><font color="black">Sektion:</font></b> Indtast vægt (krop)</string>
+    <string name="guide_weigh_body_text">Dette er sektionen hvor du indtaster dine kropsvejninger hver dag. Sektionen vil automatisk registrere din første vejning som dagens morgenvægt. Enhver indtastning du foretager herinde vil opdatere hvor meget resterende mad, der vises ude i hovedmenuen. Den indtastede vægt skal være i kilo.
+    </string>
+    <string name="guide_weigh_food_head"><b><font color="black">Sektion:</font></b> Indtast vægt (mad)</string>
+    <string name="guide_weigh_food_text">Dette er sektionen hvor du indtaster dine madvejninger hver dag. Teknisk set er det valgfrit om du vil indtaste din mad eller ej, men vælger du at gøre det, skaber det et langt bedre overblik, idet appen automatisk opdaterer hvor meget resterende mad, du har tilbage ude i hovedmenuen. Den indtastede vægt er i gram.
+    </string>
+    <string name="guide_diet_select_head"><b><font color="black">Sektion:</font></b> Skift diæt</string>
+    <string name="guide_diet_select_text">Fra denne sektion kan du skifte til en anden diæt eller danne et overblik over alle diæterne på din telefon. Det er også muligt at slette alt ved at trykke på det røde kryds øverst til højre, eller blot slette en enkelt diæt ved at trykke på en og holde fingeren nede et sekunds tid. Vær opmærksom på det er ikke muligt at få genskabt det data du sletter!
+    </string>
 </resources>
 

@@ -15,16 +15,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.skydt.weightcontrol.R;
-import com.skydt.weightcontrol.activities.InformationActivity;
+import com.skydt.weightcontrol.activities.GuideActivity;
 
-public class PopupService implements View.OnClickListener
+public class TextPopupService implements View.OnClickListener
 {
     private android.widget.PopupWindow popupWindow;
     private View view;
     private Context context;
     private SharedPreferences sharedPreferences;
 
-    public PopupService(View view, Context context, SharedPreferences sharedPreferences)
+    public TextPopupService(View view, Context context, SharedPreferences sharedPreferences)
     {
         this.view = view;
         this.context = context;
@@ -35,18 +35,21 @@ public class PopupService implements View.OnClickListener
     {
         // inflate the layout of the popup window
         LayoutInflater inflater = LayoutInflater.from(context);
-        View popupView = inflater.inflate(R.layout.popup_window, null);
+        View popupView = inflater.inflate(R.layout.text_popup_window, null);
 
         // enables clickable links in text view
         ((TextView)popupView.findViewById(R.id.tvWelcome)).setMovementMethod(LinkMovementMethod.getInstance());
 
-        Button btn1 = popupView.findViewById(R.id.button1);
-        Button btn2 = popupView.findViewById(R.id.button2);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
+        Button btnSkip = popupView.findViewById(R.id.btnSkip);
+        Button btnGuide = popupView.findViewById(R.id.btnGuide);
+        btnSkip.setOnClickListener(this);
+        btnGuide.setOnClickListener(this);
 
-        // set the size of the popup and enables outside clicks (focusable)
-        popupWindow = new android.widget.PopupWindow(popupView, (int)sizes[0], (int)sizes[1], true);
+        // save bool to disable future menu loads
+        saveBoolInSharedPreferences();
+
+        // set the size of the popup and disables outside clicks (focusable)
+        popupWindow = new android.widget.PopupWindow(popupView, (int)sizes[0], (int)sizes[1]);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
 
         // check SDK version, since only available in 21 and above
@@ -89,15 +92,13 @@ public class PopupService implements View.OnClickListener
 
         switch(id)
         {
-            case R.id.button1:
+            case R.id.btnSkip:
                 popupWindow.dismiss();
-                saveBoolInSharedPreferences();
                 break;
-            case R.id.button2:
-                Intent intent = new Intent(context, InformationActivity.class);
-                popupWindow.dismiss();
-                saveBoolInSharedPreferences();
+            case R.id.btnGuide:
+                Intent intent = new Intent(context, GuideActivity.class);
                 context.startActivity(intent);
+                popupWindow.dismiss();
                 break;
             default:
                 break;
