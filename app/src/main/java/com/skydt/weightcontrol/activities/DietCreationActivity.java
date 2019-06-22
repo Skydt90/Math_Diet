@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,6 +22,7 @@ import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.models.Diet;
 import com.skydt.weightcontrol.services.DayService;
 import com.skydt.weightcontrol.services.DietService;
+import com.skydt.weightcontrol.services.PopupService;
 
 import java.util.Locale;
 
@@ -36,15 +38,24 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
     private DietService dietService;
     private DayService dayService;
     private int dietID;
+    private boolean welcome;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diet_creation_activity);
+        sharedPreferences = getSharedPreferences("menu_values", MODE_PRIVATE);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         loadInterface();
+        checkSharedPreferences();
+    }
+
+    private void checkSharedPreferences()
+    {
+        welcome = sharedPreferences.getBoolean("welcome", true);
     }
 
     private void loadInterface()
@@ -201,6 +212,28 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("dietID", dietID);
         editor.apply();
+    }
+
+    private void showWelcome()
+    {
+        PopupService popupService = new PopupService(findViewById(android.R.id.content), this, sharedPreferences);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        double[] sizes = {displayMetrics.widthPixels * 0.85, displayMetrics.heightPixels * 0.85};
+
+        popupService.showPopupWindow(sizes);
+    }
+
+    @Override
+    public void onAttachedToWindow()
+    {
+        super.onAttachedToWindow();
+        if (welcome == welcome)
+        {
+            showWelcome();
+        }
+        showWelcome();
     }
 
     private class CreateDiet extends AsyncTask<Void, Void, Void>

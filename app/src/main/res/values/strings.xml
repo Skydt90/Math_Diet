@@ -15,6 +15,7 @@
     <string name="dag_info">Dags information</string>
     <string name="vælg_diæt">Vælg en diæt</string>
     <string name="indtast_vægt">Indtast vægt</string>
+    <string name="information">Information</string>
 
     <string name="aktuel_madfordeling">Aktuel</string>
     <string name="anbefalet_madfordeling">Anbefalet</string>
@@ -27,5 +28,15 @@
     <string name="advarsel">Advarsel!</string>
     <string name="ja">Ja</string>
     <string name="nej">Nej</string>
+
+    <string name="introduction">Denne app er designet til at simplificere brugen af den nye vægttabsmetode, matematisk vægttab, der er udviklet af professor Jakob Stoustrup. Såfremt du ikke er bekendt med metoden anbefaler vi du først læser op på den, ved at følge linket nedenfor, da det er utrolig vigtigt at vide hvordan den virker før man går igang!
+        \n\n<a href="https://weightctrlblog.wordpress.com/">WeightControl blog</a>
+        \n\nAppen indeholder funktioner der, forhåbentligt, vil være en stor hjælp til at trivialisere de mest frustrerende elementer ved metoden, såsom daglig udregning af målvægt eller resterende mængde af mad for blot at nævne nogle få.
+        \nDertil er bygget nogle quality of life elementer ind, som bidrager til at gøre dit vægttabsforløb lidt sjovere. Eksempelvis kan du se et diagram over dit fremskridt, hvor mange gram du har indtaget i løbet af dagen, slette eventuelle forkerte indtastninger, eller like en dag.
+        \n\nEr det første gang du benytter appen, anbefaler vi at læse vejledningen først. Vil du hellere bare igang, er det også muligt. Skulle der alligevel opstå forvirring senere kan den findes frem vha menuen.
+        \n\nTusind tak fordi du benytter vores app!
+</string>
+
+
 </resources>
 

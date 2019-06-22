@@ -9,6 +9,6 @@
         android:id="@+id/mnuSwitchDiet"
         android:title="Skift diæt" />
     <item
-        android:id="@+id/mnuAbout"
+        android:id="@+id/mnuInformation"
         android:title="Information" />
 </menu>

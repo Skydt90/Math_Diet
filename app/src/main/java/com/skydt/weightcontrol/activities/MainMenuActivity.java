@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.skydt.weightcontrol.services.BodyWeighInService;
 import com.skydt.weightcontrol.services.ChartService;
 import com.skydt.weightcontrol.services.DayService;
 import com.skydt.weightcontrol.services.DietService;
+import com.skydt.weightcontrol.services.PopupService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -295,8 +297,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent);
                 break;
 
-            case R.id.mnuAbout:
-
+            case R.id.mnuInformation:
+                intent = new Intent(this, InformationActivity.class);
+                startActivity(intent);
                 break;
 
             default:
@@ -311,5 +314,11 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         resetColorAndBtnText();
         setupInterfaceBasedOnSharedPreferences();
         super.onRestart();
+    }
+
+    @Override
+    public void onAttachedToWindow()
+    {
+        super.onAttachedToWindow();
     }
 }
