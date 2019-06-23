@@ -94,7 +94,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         lineChart.invalidate();
 
         interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // test data ad, not actual ad
         setAdListener();
 
         sharedPreferences = getSharedPreferences("menu_values", MODE_PRIVATE);
