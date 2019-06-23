@@ -1,10 +1,10 @@
 package com.skydt.weightcontrol.activities;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,7 +25,6 @@ import com.skydt.weightcontrol.services.ChartService;
 import com.skydt.weightcontrol.services.DayService;
 import com.skydt.weightcontrol.services.FoodWeighInService;
 
-import java.util.List;
 import java.util.Locale;
 
 public class DayActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener

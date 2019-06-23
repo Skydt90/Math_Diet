@@ -57,13 +57,13 @@
     <string name="guide_main_menu_text">Denne sektion giver dig et dynamisk nutidsbillede af den aktuelle dag på din diæt. Dertil fungerer den som et centralt udgangspunkt for resten af appen, da det er herfra du kan navigere til andre sektioner vha menuen eller knapperne.
         \n\n<font color="black">Navn på diæt:</font>\nNavnet på den aktive nuværende diæt.
         \n\n<font color="black">Dato:</font>\nDags dato.
-        \n\n<font color="black">Målvægt:</font>\nMålvæten er den maksimale vægt du må opnå på denne dag. Denne justeres afhængigt af det udregnede daglige vægttab en gang i døgnet.
+        \n\n<font color="black">Målvægt:</font>\nMålvægten er den maksimale vægt du må opnå på denne dag. Denne justeres afhængigt af det udregnede daglige vægttab en gang i døgnet.
         \n\n<font color="black">Morgenvægt:</font>\nHer vises den morgenvægt du har registreret på den aktuelle dag. Har du ikke indtastet en morgenvægt, vil feltet lyse rødt og bede dig indtaste den.
-        \n\n<font color="black">Resterende mad:</font>\nHer vises den tilladte mængde af mad du har tilbage at spise på dagen i gram. Denne værdi er som udgangspunkt beregnet som differencen mellem din mål- og morgenvægt. Herefter justeres den dynamisk hver gang du indtaster en ny krops- eller madvejning.
+        \n\n<font color="black">Resterende mad:</font>\nHer vises den tilladte mængde af mad du har tilbage at spise for, på dagen i gram. Denne værdi er som udgangspunkt beregnet som differencen mellem din mål- og morgenvægt. Herefter justeres den dynamisk hver gang du indtaster en ny krops- eller madvejning.
         \n\n<font color="black">BMI:</font>\nDette felt viser din nuværende BMI baseret på din seneste kropsvejning.
-        \n\n<font color="black">"Gå til" knapper:</font>\nBenyttes til at navigere til endten diæt- eller dagsinformation for den aktive diæt eller nuværende dag.
+        \n\n<font color="black">"Gå til" knapper:</font>\nBenyttes til at navigere til endten diæt- eller dagsinformation for den aktive diæt, eller nuværende dag.
         \n\n<font color="black">"Indtast vejninger" knapper:</font>\nBenyttes til at navigere til endten krops- eller madvejnings siderne. Hvis du ikke har indtastet en morgenvægt, vil du appen anmode dig om at gøre det.
-        \n\n<font color="black">Menu, øverst til højre:</font>\nHerfra kan du oprette nye diæter, skifte til andre diæter, gå til vejledning eller om.
+        \n\n<font color="black">Menu, øverst til højre:</font>\nHerfra kan du oprette nye diæter, skifte til andre diæter, gå til vejledning eller information.
     </string>
     <string name="guide_diet_activity_head"><b><font color="black">Sektion:</font></b> Diæt information</string>
     <string name="guide_diet_activity_text">Denne sektion giver dig et overblik over din nuværende diæt. Herfra kan du danne indtryk af dit fremskridt, navigere til tidligere dage eller få genopfrisket de registreringer du lavede, da diæten blev oprettet. Det er ikke muligt at redigere i nogle af disse værdier.
@@ -112,5 +112,23 @@
     <string name="build_info"><b>\nVægtkontrol App:</b>
         \n\nVersion Number:
     </string>
+    <string name="title_activity_ad">AdActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hello_world">Hello world!</string>
+    <!-- -
+        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <!-- -
+        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
 
