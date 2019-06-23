@@ -42,29 +42,6 @@ public class ChartService
     {
         LineDataSet lineDataSet;
         List<Entry> entries = new ArrayList<>();
-
-        /* THIS WORKS FINE BUT DOESN'T FIX DAY SKIP ISSUE
-        if (!bodyWeighIns.isEmpty())
-        {
-            int x = 1;
-            String currentDate = bodyWeighIns.get(0).getSQLDate();
-
-            for (BodyWeighIn weight: bodyWeighIns)
-            {
-                if (weight.getSQLDate().equals(currentDate))
-                {
-                    entries.add(new Entry(x, (float)weight.getBodyWeight()));
-                }
-                else
-                {
-                    x++;
-                    currentDate = weight.getSQLDate();
-                    entries.add(new Entry(x, (float)weight.getBodyWeight()));
-                }
-            }
-        }*/
-        /* IDEA IMPL FOR DAY SKIP BUG FIX. NEEDS TESTING!
-        TAKES A DIET OBJECT WITH A LIST OF COMPLETED DAYS, AND EACH DAY HAS TO HAVE DATA IN ITS BODYWEIGHIN LIST*/
         int x = 1;
         double currentWeight = diet.getStartWeight();
 
@@ -174,7 +151,7 @@ public class ChartService
     private void styleLineDataSet(LineDataSet dataSet, boolean drawCircles, int color, float lineWidth)
     {
         dataSet.setDrawCircles(drawCircles);
-        dataSet.setCircleRadius(2f);
+        dataSet.setCircleRadius(1.6f);
         dataSet.setColor(color);
         dataSet.setCircleColor(color);
         dataSet.setLineWidth(lineWidth);

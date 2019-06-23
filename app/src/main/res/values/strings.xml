@@ -98,37 +98,23 @@
     <string name="guide_diet_select_text">Fra denne sektion kan du skifte til en anden diæt eller danne et overblik over alle diæterne på din telefon. Det er også muligt at slette alt ved at trykke på det røde kryds øverst til højre, eller blot slette en enkelt diæt ved at trykke på en og holde fingeren nede et sekunds tid. Vær opmærksom på det er ikke muligt at få genskabt det data du sletter!
     </string>
 
-    <string name="developers"><b>Udvikling, design og programmering:</b>
-        \n\n<i>Christian Grye Skydt</i>\n<i>Niels Mærkedahl Justesen</i>
+    <string name="developers"><b>App udvikling og programmering:</b>
+        \n<i>Christian Grye Skydt</i>\n<i>Niels Mærkedahl Justesen</i>
     </string>
-    <string name="method_by"><b>\nMatematisk vægttab:</b>
-        \n\n<i>Jakob Stoustrup</i>
+    <string name="method_by"><b>\nMetode matematisk vægttab:</b>
+        \n<i>Professor Jakob Stoustrup</i>
         \n<i><a href="https://weightctrlblog.wordpress.com/">WeightControl blog</a></i>
     </string>
-    <string name="license"><b>\nBruger betingelser:</b>
-        \n\n<i>Image: <a href="https://icon-icons.com/icon/fruit-apple-food/1314">Apple</a> By: <a href="https://www.deviantart.com/bingxueling">Bingxueling</a>
-            \nEr licenseret under en: <a href="http://creativecommons.org/licenses/by/4.0/">\nCreative Commons Kreditering 4.0 International Licens</a>.</i>
+    <string name="contact"><b>\nKontakt:</b>
+        \n<i>Skydtdev@gmail.com
+        \n<a href="https://www.facebook.com/groups/1847906925450718/">Facebook gruppe</a></i>
+    </string>
+    <string name="license"><font color="black"><b>\nLicense:</b>
+        \n<i>Icon <a href="https://www.flaticon.com/free-icon/law_1208198">law</a> created by <a href="https://www.flaticon.com/">freepik</a> from www.flaticon.com
+            \nis licensed by: <a href="http://creativecommons.org/licenses/by/3.0/">\nCC 3.0 BY</a></i></font>
     </string>
     <string name="build_info"><b>\nVægtkontrol App:</b>
-        \n\nVersion Number:
+        \n<i>Version Number:</i>
     </string>
-    <string name="title_activity_ad">AdActivity</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="hello_world">Hello world!</string>
-    <!-- -
-        This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
-        For more information, see https://support.google.com/admob/answer/3052638
-    <!- -->
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-
-    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
-    <string name="start_level">Level 1</string>
-    <string name="next_level">Next Level</string>
-    <!-- -
-        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
-        For more information, see https://support.google.com/admob/answer/3052638
-    <!- -->
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 </resources>
 

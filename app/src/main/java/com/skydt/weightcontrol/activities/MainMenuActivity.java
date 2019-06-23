@@ -6,21 +6,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.skydt.weightcontrol.R;
 import com.skydt.weightcontrol.models.Day;
 import com.skydt.weightcontrol.models.Diet;
@@ -35,7 +28,6 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private static final String TAG = "MainMenuActivity";
     private Button btnGoToDay;
     private Button btnBodyWeighIn;
     private Button btnFood;
@@ -46,12 +38,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private TextView tvAllowedFood;
     private TextView tvBMI;
     private LineChart lineChart;
-    private SharedPreferences sharedPreferences;
-    private InterstitialAd interstitialAd;
 
     private Intent intent;
     private int dietID;
-    private int count;
     private Day day;
     private Diet diet;
     private DietService dietService;
@@ -66,9 +55,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
         loadInterface();
         setupInterfaceBasedOnSharedPreferences();
-
-        // REAL AdMob app ID: ca-app-pub-7700589012082157~3789137470
-        // MobileAds.initialize(this, "YOUR_ADMOB_APP_ID");
     }
 
     private void loadInterface()
@@ -92,12 +78,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         lineChart = findViewById(R.id.linechart);
         lineChart.getDescription().setEnabled(false);
         lineChart.invalidate();
-
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // test data ad, not actual ad
-        setAdListener();
-
-        sharedPreferences = getSharedPreferences("menu_values", MODE_PRIVATE);
     }
 
     private void setupInterfaceBasedOnSharedPreferences()
@@ -108,7 +88,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             intent = new Intent(this, DietCreationActivity.class);
             startActivity(intent);
             finish();
-        } else
+        }
+        else
         {
             populateInterface();
         }
@@ -116,20 +97,12 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void checkSharedPreferences()
     {
+        SharedPreferences sharedPreferences = getSharedPreferences("menu_values", MODE_PRIVATE);
         dietID = sharedPreferences.getInt("dietID", 0);
-        count = sharedPreferences.getInt("count", 0);
-    }
-
-    private void saveCountInSharedPreferences()
-    {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("count", count);
-        editor.apply();
     }
 
     private void populateInterface()
     {
-        interstitialAd.loadAd(new AdRequest.Builder().build());
         dayService = new DayService();
         dietService = new DietService();
         BodyWeighInService bodyWeighInService = new BodyWeighInService();
@@ -258,13 +231,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         btnBodyWeighIn.setAlpha(0.2f);
     }
 
-    private void showAdAndResetCount()
-    {
-        interstitialAd.show();
-        count = 0;
-        saveCountInSharedPreferences();
-    }
-
     @Override
     public void onClick(View v)
     {
@@ -274,68 +240,31 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         switch (buttonID)
         {
             case R.id.btnGoToDiet:
-                count += 1;
-                if (count >= 10 && interstitialAd.isLoaded())
-                {
-                    showAdAndResetCount();
-                }
-                else
-                {
-                    intent = new Intent(MainMenuActivity.this, DietActivity.class);
-                    intent.putExtra("dietID", diet.getDietID());
-                    saveCountInSharedPreferences();
-                    startActivity(intent);
-                }
+                intent = new Intent(MainMenuActivity.this, DietActivity.class);
+                intent.putExtra("dietID", diet.getDietID());
+                startActivity(intent);
                 break;
 
             case R.id.btnGoToDay:
-                count += 1;
-                if (count >= 10 && interstitialAd.isLoaded())
-                {
-                    showAdAndResetCount();
-                }
-                else
-                {
-                    intent = new Intent(MainMenuActivity.this, DayActivity.class);
-                    intent.putExtra("dietID", diet.getDietID());
-                    intent.putExtra("dayID", day.getSqlDate());
-                    saveCountInSharedPreferences();
-                    startActivity(intent);
-                }
+                intent = new Intent(MainMenuActivity.this, DayActivity.class);
+                intent.putExtra("dietID", diet.getDietID());
+                intent.putExtra("dayID", day.getSqlDate());
+                startActivity(intent);
                 break;
 
             case R.id.btnBodyWeighIn:
-                count += 1;
-                if (count >= 10 && interstitialAd.isLoaded())
-                {
-                    showAdAndResetCount();
-                }
-                else
-                {
-                    intent = new Intent(this, RegisterWeightActivity.class);
-                    intent.putExtra("btnText", btnBodyWeighIn.getText().toString());
-                    intent.putExtra("dietID", dietID);
-                    saveCountInSharedPreferences();
-                    startActivity(intent);
-                }
+                intent = new Intent(this, RegisterWeightActivity.class);
+                intent.putExtra("btnText", btnBodyWeighIn.getText().toString());
+                intent.putExtra("dietID", dietID);
+                startActivity(intent);
                 break;
 
             case R.id.btnFood:
-                count += 1;
-                if (count >= 10 && interstitialAd.isLoaded())
-                {
-                    showAdAndResetCount();
-                }
-                else
-                {
-                    intent = new Intent(this, RegisterWeightActivity.class);
-                    intent.putExtra("btnText", btnFood.getText().toString());
-                    intent.putExtra("dietID", dietID);
-                    saveCountInSharedPreferences();
-                    startActivity(intent);
-                }
+                intent = new Intent(this, RegisterWeightActivity.class);
+                intent.putExtra("btnText", btnFood.getText().toString());
+                intent.putExtra("dietID", dietID);
+                startActivity(intent);
                 break;
-
             default:
                 break;
         }
@@ -356,25 +285,21 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         switch (id)
         {
             case R.id.mnuCreateDiet:
-                count += 1;
                 intent = new Intent(this, DietCreationActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.mnuSwitchDiet:
-                count += 1;
                 intent = new Intent(this, DietSelectionActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.mnuGuide:
-                count += 1;
                 intent = new Intent(this, GuideActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.mnuInformation:
-                count += 1;
                 intent = new Intent(this, InformationActivity.class);
                 startActivity(intent);
                 break;
@@ -389,24 +314,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     {
         resetColorAndBtnText();
         setupInterfaceBasedOnSharedPreferences();
-        Log.d(TAG, "onRestart: count:" + count);
         super.onRestart();
-    }
-
-    private void setAdListener()
-    {
-        interstitialAd.setAdListener(new AdListener()
-        {
-            @Override
-            public void onAdLoaded()
-            {
-                Log.d(TAG, "onAdLoaded: rdy");
-            }
-            @Override
-            public void onAdClosed()
-            {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-        });
     }
 }

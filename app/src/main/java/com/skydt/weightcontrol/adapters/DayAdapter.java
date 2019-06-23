@@ -65,6 +65,11 @@ public class DayAdapter extends ArrayAdapter
             viewHolder.tvDate.setTextColor(Color.parseColor("#53C557"));
             viewHolder.tvGoalWeight.setTextColor(Color.parseColor("#53C557"));
         }
+        else
+        {
+            viewHolder.tvDate.setTextColor(Color.GRAY);
+            viewHolder.tvGoalWeight.setTextColor(Color.GRAY);
+        }
 
         return convertView;
     }

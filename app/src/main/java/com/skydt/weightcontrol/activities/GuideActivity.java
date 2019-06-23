@@ -47,7 +47,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         tvInformation.setMovementMethod(new ScrollingMovementMethod());
         tvBarProgressNum = findViewById(R.id.tvBarProgressNum);
         progressBar = findViewById(R.id.progressBar);
-        //progressBar.getProgressDrawable().setColorFilter(Color.parseColor("#53C557"), android.graphics.PorterDuff.Mode.SRC_IN);
         btnImage = findViewById(R.id.btnImage);
         btnPrevious = findViewById(R.id.btnPrevious);
         btnNext = findViewById(R.id.btnNext);

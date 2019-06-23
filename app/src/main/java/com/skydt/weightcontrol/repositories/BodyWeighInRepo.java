@@ -290,7 +290,6 @@ public class BodyWeighInRepo
         return completedDays;
     }
 
-
     public void deleteBodyWeighInByID(int weighInID, Context context)
     {
         appDatabase = AppDatabase.getInstance(context);

@@ -63,6 +63,18 @@
         android:gravity="center"
         android:text="@string/build_info"
         android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/tvContact"
+        app:layout_constraintStart_toStartOf="@+id/tvContact"
+        app:layout_constraintTop_toBottomOf="@+id/tvContact" />
+
+    <TextView
+        android:id="@+id/tvContact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="@+id/tvMethodBy"
         app:layout_constraintStart_toStartOf="@+id/tvMethodBy"
         app:layout_constraintTop_toBottomOf="@+id/tvMethodBy" />

@@ -33,13 +33,17 @@ public class InformationActivity extends AppCompatActivity
         tvMethodBy.setMovementMethod(LinkMovementMethod.getInstance());
         tvMethodBy.setText(this.getResources().getText(R.string.method_by));
 
-        TextView tvLicense = findViewById(R.id.tvLicense);
-        tvLicense.setText(this.getResources().getText(R.string.license));
-        tvLicense.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView tvContact = findViewById(R.id.tvContact);
+        tvContact.setMovementMethod(LinkMovementMethod.getInstance());
+        tvContact.setText(this.getResources().getText(R.string.contact));
 
         getVersionInfo();
         TextView tvBuildInfo = findViewById(R.id.tvBuildInfo);
         tvBuildInfo.append(versionName);
+
+        TextView tvLicense = findViewById(R.id.tvLicense);
+        tvLicense.setMovementMethod(LinkMovementMethod.getInstance());
+        tvLicense.setText(this.getResources().getText(R.string.license));
     }
 
     private void getVersionInfo()

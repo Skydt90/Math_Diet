@@ -35,7 +35,6 @@ public class DayService
     {
         Log.d(TAG, "postDays: Called");
         dayRepo.postDays(days, context, dietID);
-        Log.d(TAG, "postDays: Finished");
     }
 
     public List<Day> loadAllCompletedDaysFromDiet(int dietID, String currentDate, Context context)
@@ -52,9 +51,7 @@ public class DayService
     public Day loadDayByPrimaryKey(String dayID, int dietID, Context context)
     {
         Log.d(TAG, "loadDayByPrimaryKey: Called");
-        Day day = dayRepo.loadDayByPrimaryKey(dayID, dietID, context);
-        Log.d(TAG, "loadDayByPrimaryKey: Finished");
-        return day;
+        return dayRepo.loadDayByPrimaryKey(dayID, dietID, context);
     }
 
     public String loadFirstAndLastDateInDanishFormat(int dietID, Context context)
@@ -108,14 +105,12 @@ public class DayService
         Log.d(TAG, "updateMorningWeight: Called");
         dayRepo.updateMorningWeight(day, morningWeight, context);
         updateAllowedFoodIntakeBasedOnMorningWeight(day, context);
-        Log.d(TAG, "updateMorningWeight: Finished");
     }
 
     public void updateAllowedFoodIntakeBasedOnFoodWeighIn(Day day, double enteredWeight, Context context)
     {
         Log.d(TAG, "updateRemainingFoodIntake: Called");
         dayRepo.updateAllowedFoodIntakeBasedOnWeighIn(day, calculateRemainingFoodIntakeBasedOnFoodWeighIn(day, enteredWeight), context);
-        Log.d(TAG, "updateRemainingFoodIntake: Finished");
     }
 
     public void updateAllowedFoodIntakeBasedOnBodyWeighIn(Day day, double enteredWeight, Context context)
@@ -127,7 +122,6 @@ public class DayService
     {
         Log.d(TAG, "updateLikeOnDay: Called");
         dayRepo.updateLikeOnDay(day, context, like);
-        Log.d(TAG, "updateLikeOnDay: Finished");
     }
 
     /*
