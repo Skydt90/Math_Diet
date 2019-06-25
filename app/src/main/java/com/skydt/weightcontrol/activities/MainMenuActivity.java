@@ -111,9 +111,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         diet = dietService.loadDietByID(dietID, this);
         diet.setDays(dayService.loadAllCompletedDaysFromDiet((diet.getDietID()), currentDate, this));
         diet.setDays(bodyWeighInService.readAllBodyWeighInsFromCompletedDaysInDiet(diet.getDays(), this));
-        day = dayService.loadDayByPrimaryKey(dayService.getCurrentDateAsString(), dietID, this);
+        day = dayService.loadDayByPrimaryKey(currentDate, dietID, this);
 
         tvCurrentDiet.setText(diet.getDietName());
+
         if (day.getDayID() != null)
         {
             tvDate.setText(day.getDateAsDanishDisplayText());
@@ -220,9 +221,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void dayZero()
     {
-        tvDate.setText(R.string.Dag01);
+        tvDate.setText(R.string.dag01);
         tvDate.setTextColor(Color.parseColor("#53C557"));
-        tvGoalWeight.setText(R.string.Dag02);
+        tvGoalWeight.setText(R.string.dag02);
         tvGoalWeight.setTextColor(Color.parseColor("#53C557"));
         tvMorningWeight.setText(R.string.error);
         tvAllowedFood.setText(R.string.error);

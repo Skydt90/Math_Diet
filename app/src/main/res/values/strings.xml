@@ -6,8 +6,8 @@
     <string name="krop">Krop</string>
     <string name="done">Diæt Afsluttet</string>
 
-    <string name="Dag01">Dette er dag 0</string>
-    <string name="Dag02">Diæten begynder i morgen</string>
+    <string name="dag01">Dette er dag 0</string>
+    <string name="dag02">Diæten begynder i morgen</string>
 
     <string name="app_name">Vægtkontrol</string>
     <string name="opret_diæt">Opret ny diæt</string>
@@ -61,8 +61,8 @@
         \n\n<font color="black">Morgenvægt:</font>\nHer vises den morgenvægt du har registreret på den aktuelle dag. Har du ikke indtastet en morgenvægt, vil feltet lyse rødt og bede dig indtaste den.
         \n\n<font color="black">Resterende mad:</font>\nHer vises den tilladte mængde af mad du har tilbage at spise for, på dagen i gram. Denne værdi er som udgangspunkt beregnet som differencen mellem din mål- og morgenvægt. Herefter justeres den dynamisk hver gang du indtaster en ny krops- eller madvejning.
         \n\n<font color="black">BMI:</font>\nDette felt viser din nuværende BMI baseret på din seneste kropsvejning.
-        \n\n<font color="black">"Gå til" knapper:</font>\nBenyttes til at navigere til endten diæt- eller dagsinformation for den aktive diæt, eller nuværende dag.
-        \n\n<font color="black">"Indtast vejninger" knapper:</font>\nBenyttes til at navigere til endten krops- eller madvejnings siderne. Hvis du ikke har indtastet en morgenvægt, vil du appen anmode dig om at gøre det.
+        \n\n<font color="black">\"Gå til\" knapper:</font>\nBenyttes til at navigere til endten diæt- eller dagsinformation for den aktive diæt, eller nuværende dag.
+        \n\n<font color="black">\"Indtast vejninger\" knapper:</font>\nBenyttes til at navigere til endten krops- eller madvejnings siderne. Hvis du ikke har indtastet en morgenvægt, vil appen anmode dig om at gøre det.
         \n\n<font color="black">Menu, øverst til højre:</font>\nHerfra kan du oprette nye diæter, skifte til andre diæter, gå til vejledning eller information.
     </string>
     <string name="guide_diet_activity_head"><b><font color="black">Sektion:</font></b> Diæt information</string>
