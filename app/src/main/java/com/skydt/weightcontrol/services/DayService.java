@@ -43,6 +43,12 @@ public class DayService
         return dayRepo.loadAllCompletedDaysFromDiet(dietID, currentDate, context);
     }
 
+    public List<Day> loadAllNonCompletedDaysFromDiet(int dietID, String currentDate, Context context)
+    {
+        Log.d(TAG, "loadAllNonCompletedDaysFromDiet: Called");
+        return dayRepo.loadAllNonCompletedDaysFromDiet(dietID, currentDate, context);
+    }
+
     public List<Day> loadAllDaysFromDiet(int dietID, Context context)
     {
         return dayRepo.loadAllDaysFromDiet(dietID, context);

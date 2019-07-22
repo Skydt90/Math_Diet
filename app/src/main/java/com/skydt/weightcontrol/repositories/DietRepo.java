@@ -37,9 +37,10 @@ public class DietRepo
             values.put(DBContract.DietEntries.DESIRED_WEIGHT, diet.getDesiredWeight());
             values.put(DBContract.DietEntries.NUMBER_OF_DAYS, diet.getNumberOfDays());
             values.put(DBContract.DietEntries.HEIGHT, diet.getHeight());
+            values.put(DBContract.DietEntries.PAUSED, diet.getPaused());
 
-            ID = database.insertOrThrow(DBContract.DietEntries.TABLE_NAME, null, values);
-        }
+        ID = database.insertOrThrow(DBContract.DietEntries.TABLE_NAME, null, values);
+    }
         catch (SQLiteException sqle)
         {
             Log.e(TAG, "postDiet: SQLite Exception Thrown!", sqle);
@@ -205,6 +206,54 @@ public class DietRepo
         finally
         {
             database.close();
+        }
+    }
+
+    public boolean loadDietPaused(int dietID, Context context)
+    {
+        Log.d(TAG, "loadDietPaused: Called");
+        appDatabase = AppDatabase.getInstance(context);
+        int paused = 0;
+        try
+        {
+            database = appDatabase.getReadableDatabase();
+
+            String query = "SELECT " + DBContract.DietEntries.PAUSED + " FROM " + DBContract.DietEntries.TABLE_NAME + " WHERE " + DBContract.DietEntries.DIET_ID + " = " + dietID;
+            cursor = database.rawQuery(query,null, null);
+            cursor.moveToFirst();
+            paused = cursor.getInt(0);
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.e(TAG, "loadDietPaused: ", sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.e(TAG, "loadDietPaused: ", sqle);
+        }
+        return (paused != 0);
+    }
+
+    public void postDietPause(int dietID, boolean value, Context context)
+    {
+        Log.d(TAG, "loadDietPaused: Called");
+        appDatabase = AppDatabase.getInstance(context);
+        try
+        {
+            database = appDatabase.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put(DBContract.DietEntries.PAUSED, value);
+
+            long ID = database.update(DBContract.DietEntries.TABLE_NAME, values, "diet_ID=" + dietID,null);
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.e(TAG, "loadDietPaused: ", sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.e(TAG, "loadDietPaused: ", sqle);
         }
     }
 }

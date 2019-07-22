@@ -47,7 +47,8 @@ public class AppDatabase extends SQLiteOpenHelper
                 + DBContract.DietEntries.START_WEIGHT + " DOUBLE, "
                 + DBContract.DietEntries.DESIRED_WEIGHT + " DOUBLE, "
                 + DBContract.DietEntries.NUMBER_OF_DAYS + " INTEGER, "
-                + DBContract.DietEntries.HEIGHT + " DOUBLE);";
+                + DBContract.DietEntries.HEIGHT + " DOUBLE,"
+                + DBContract.DietEntries.PAUSED + " BOOL)";
         db.execSQL(createDietTable);
 
         String createDayTable = "CREATE TABLE "

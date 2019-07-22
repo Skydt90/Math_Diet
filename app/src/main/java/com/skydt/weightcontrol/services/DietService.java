@@ -65,6 +65,19 @@ public class DietService
         Log.d(TAG, "deleteDietByID: Finished");
     }
 
+    public boolean loadDietPaused(int dietID, Context context)
+    {
+        Log.d(TAG, "loadDietPaused: Called");
+        return dietRepo.loadDietPaused(dietID, context);
+    }
+
+    public void postPauseDiet(int dietID, boolean value, Context context)
+    {
+        Log.d(TAG, "postPauseDiet: Called");
+        dietRepo.postDietPause(dietID, value, context);
+        Log.d(TAG, "postPauseDiet: Finished");
+    }
+
 
     /*
     BUSINESS LOGIC

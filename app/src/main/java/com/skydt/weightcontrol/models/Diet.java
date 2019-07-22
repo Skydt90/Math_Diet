@@ -12,6 +12,7 @@ public class Diet
     private int numberOfDays;
     private double height;
     private List<Day> days;
+    private boolean paused;
 
     /*
     Constructors
@@ -21,13 +22,14 @@ public class Diet
         this.days = new ArrayList<>();
     }
 
-    public Diet(String dietName, double startWeight, double desiredWeight, int numberOfDays, double height)
+    public Diet(String dietName, double startWeight, double desiredWeight, int numberOfDays, double height, boolean paused)
     {
         this.dietName = dietName;
         this.startWeight = startWeight;
         this.desiredWeight = desiredWeight;
         this.numberOfDays = numberOfDays;
         this.height = height;
+        this.paused = paused;
         this.days = new ArrayList<>();
     }
 
@@ -67,6 +69,7 @@ public class Diet
     {
         return height;
     }
+    public boolean getPaused() { return paused; }
 
 
     /*
@@ -100,6 +103,7 @@ public class Diet
     {
         this.height = height;
     }
+    public void setPaused(boolean paused) { this.paused = paused; }
     public void addDay(Day day)
     {
         days.add(day);
@@ -117,4 +121,8 @@ public class Diet
                 ", height=" + height +
                 '}';
     }
+
+
+
+
 }

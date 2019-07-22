@@ -271,7 +271,8 @@ public class DietCreationActivity extends AppCompatActivity implements View.OnCl
             Diet diet = new Diet(etDietName.getText().toString(),
                     Double.parseDouble(etCurrentWeight.getText().toString()),
                     Double.parseDouble(etDesiredWeight.getText().toString()),
-                    Integer.parseInt(etDays.getText().toString()), Double.parseDouble(etHeight.getText().toString()));
+                    Integer.parseInt(etDays.getText().toString()), Double.parseDouble(etHeight.getText().toString()),
+                    false);
             dietID = (int) dietService.postDiet(diet, DietCreationActivity.this);
             diet.setDietID(dietID);
 

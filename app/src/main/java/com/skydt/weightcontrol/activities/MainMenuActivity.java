@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,9 +30,11 @@ import java.util.Locale;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener
 {
+    private static final String TAG = "MainMenuActivity";
     private Button btnGoToDay;
     private Button btnBodyWeighIn;
     private Button btnFood;
+    private Button btnPause;
     private TextView tvCurrentDiet;
     private TextView tvDate;
     private TextView tvGoalWeight;
@@ -67,6 +71,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         btnBodyWeighIn.setOnClickListener(this);
         btnFood = findViewById(R.id.btnFood);
         btnFood.setOnClickListener(this);
+        btnPause = findViewById(R.id.btnPause);
+        btnPause.setOnClickListener(this);
 
         tvCurrentDiet = findViewById(R.id.tvCurrentDiet);
         tvDate = findViewById(R.id.tvDate);
@@ -266,6 +272,14 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
                 intent.putExtra("dietID", dietID);
                 startActivity(intent);
                 break;
+
+            case R.id.btnPause:
+                dietService.postPauseDiet(diet.getDietID(), true, this);
+                boolean test = dietService.loadDietPaused(diet.getDietID(), this);
+
+                List<Day> nonCompletedDays = dayService.loadAllNonCompletedDaysFromDiet(dietID, dayService.getCurrentDateAsString(), this);
+                //Set diet on pause if it wasnt already, or unpause it, if it was.
+                Log.d(TAG, "Pause: " + test);
             default:
                 break;
         }

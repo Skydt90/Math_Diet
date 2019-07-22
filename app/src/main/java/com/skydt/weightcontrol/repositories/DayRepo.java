@@ -108,6 +108,56 @@ public class DayRepo
         return  days;
     }
 
+    public List<Day> loadAllNonCompletedDaysFromDiet(int dietID, String currentDate, Context context)
+    {
+        Log.d(TAG, "loadAllNonCompletedDaysFromDiet: Called");
+        List<Day> days = new ArrayList<>();
+        appDatabase = AppDatabase.getInstance(context);
+
+        try
+        {
+            database = appDatabase.getReadableDatabase();
+
+            String query = "SELECT * FROM " + DBContract.DayEntries.TABLE_NAME
+                    + " WHERE " + DBContract.DayEntries.DIET_ID
+                    + " = " + dietID + " AND " + DBContract.DayEntries.DAY_ID
+                    + " >= DATE('" + currentDate + "')";
+            cursor = database.rawQuery(query,null, null);
+
+            if(cursor != null && cursor.getCount() > 0)
+            {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast())
+                {
+                    Day day = new Day();
+                    day.setDayIDByString(cursor.getString(0));
+                    day.setDietID(cursor.getInt(1));
+                    day.setGoalWeight(cursor.getDouble(2));
+                    day.setMorningWeight(cursor.getDouble(3));
+                    day.setAllowedFoodIntake(cursor.getDouble(4));
+                    day.setLike((Boolean.parseBoolean(cursor.getString(5))));
+                    days.add(day);
+                    cursor.moveToNext();
+                }
+            }
+        }
+        catch (SQLiteException sqle)
+        {
+            Log.d(TAG, "loadAllCompletedDaysFromDiet: SQLiteException " + sqle);
+        }
+        catch (SQLException sqle)
+        {
+            Log.d(TAG, "loadAllCompletedDaysFromDiet: SQLException " + sqle);
+        }
+        finally
+        {
+            database.close();
+            cursor.close();
+            Log.d(TAG, "loadAllCompletedDaysFromDiet: Finished");
+        }
+        return  days;
+    }
+
     public List<Day> loadAllDaysFromDiet(int dietID, Context context)
     {
         Log.d(TAG, "loadAllDaysFromDiet: Called");

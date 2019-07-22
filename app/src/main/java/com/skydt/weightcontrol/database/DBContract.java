@@ -15,6 +15,7 @@ public class DBContract
         public static final String DESIRED_WEIGHT = "desired_weight";
         public static final String NUMBER_OF_DAYS = "number_of_days";
         public static final String HEIGHT = "height";
+        public static final String PAUSED = "paused";
     }
 
     public static class DayEntries implements BaseColumns
