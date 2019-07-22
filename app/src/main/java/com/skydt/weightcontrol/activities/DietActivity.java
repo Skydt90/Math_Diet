@@ -97,7 +97,6 @@ public class DietActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void populateListView()
     {
-        int test = 0;
         diet.setDays(dayService.loadAllCompletedDaysFromDiet(dietID, dayService.getCurrentDateAsString(),this));
         dayAdapter = new DayAdapter(this, R.layout.custom_day_list_cell, diet.getDays());
         lvDays.setAdapter(dayAdapter);
